@@ -18,6 +18,8 @@
 
 이 문제점은 또한 창업동아리 COIN-ON의 실패를 설명할 수 있다.  
 
+나는 당장에 실패했지만 끝엔 승리하리
+
 ## 문서
 [결과보고서](https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2021_%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%20%EB%AA%AC%EC%8A%A4%ED%84%B0%20%EB%A0%88%EB%B2%A8%20%EB%94%94%EC%9E%90%EC%9D%B8%20%EC%97%B0%EA%B5%AC/%EA%B2%B0%EA%B3%BC%EB%B3%B4%EA%B3%A0%EC%84%9C.pdf)  
 
