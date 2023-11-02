@@ -1,7 +1,7 @@
 ## 개요
 방학 때 동기에게 연락이 왔다. "심심한데 게임 만들어보자"  
 왠진 모르겠는데 나는 또 아트를 담당했다.  
-[Play Store](https://play.google.com/store/apps/details?id=com.jinwoo.WallBreaker&pcampaignid=web_share)
+[Download in Play Store](https://play.google.com/store/apps/details?id=com.jinwoo.WallBreaker&pcampaignid=web_share)
 ## 게임 배경
 무한히 생기는 벽을 파괴하라!
 ## 담당 직군: 아트
