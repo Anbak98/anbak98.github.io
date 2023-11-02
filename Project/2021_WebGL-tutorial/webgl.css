@@ -1,0 +1,54 @@
+html {
+	background-color: #100005;
+}	
+  
+canvas {	
+  background-color: #ffffff;
+ 
+}
+
+body {
+  border: 5px solid black;
+  max-width: 1300px;
+  padding: 10px;
+  background-color: #FF9500;
+  margin: 0 auto;
+  font: 14px/19px 'Lucida Grande', sans-serif;
+}
+
+p, ul {
+    font: bold italic 18px Georgia;
+  margin: 0 0 30px 0;
+}
+
+p2 {
+  background-color: #FF2200;
+}
+p3 {
+  background-color: #F66663;
+}
+li2{
+  background-color: #F66663;
+}
+
+h1 {
+  font: bold italic 50px Georgia;
+  color: #DC143C;
+  margin: 0 0 60px 0;
+  text-align: center;
+  text-shadow: 1px 1px 1px black;
+}
+
+h2 {
+  font: bold italic 23px Georgia;
+  color: #DC143C;
+  text-shadow: 1px 1px 1px black;
+}
+
+a {
+  color: inherit;
+}
+
+video {
+	display: none;
+}

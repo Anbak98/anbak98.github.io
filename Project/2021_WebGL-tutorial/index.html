@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+	<html>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="./webgl.css" type="text/css">
+		<script type="text/javascript" src="gl-matrix.js"> </script>
+		<title>WebGL Mapping Tutorial</title>
+	</html>
+</head>
+
+<!-- drawing
+Reference: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event-->
+
+<body> 
+	
+	<div id="header">
+	<h1>-WebGL Tutorial- <br>How to make this page?</h1>
+	<p> Hello! Welcome to my WebGL Tutorial!&nbsp;I'm a student at Ajou University.&nbsp;Now i'll show you CSS, eventlistner, 3d Rendering.&nbsp;Plese enjoy! </p>
+	<p2> 이 페이지의 디자인은 index.html, webgl.css파일로부터 비롯됩니다. 이 페이지를 가득 채운 충격적인 디자인들의 출처를 직접 확인해보죠. 먼저 F12를 눌러 개발자도구를 활성화하세요. 그다음 Sources탭을 찾아 들어가면 이 페이지를 구성하는데 사용된 자료들을 확인할 수 있습니다. 이 페이지에선 총 4개의 자료가 존재합니다. 그 중 gl-matrix와 script.js는 3d Graphic을 렌더링 하는데 사용됩니다. 이 페이지 하단에 나오는 큐브가 그 예시입니다. 그리고 index.html과 webgl.css는 이 페이지를 만드는데 사용됩니다.  </p2><br></br>
+	<p3> 조금 열받으라고 색깔을 바꿔봤습니다. 만약 이런 충격적인 색감에도 멀쩡하시다면 조금 존경스러울 거 같네요. 일단 제가 어떻게 글자 배경 색깔을 바꿨는지부터 알아봅시다. 개발자 도구의 sources 탭에서 index.html파일을 클릭합시다. 그리고 19번, 20번 줄을 확인합시다. 지금 읽고 있는 문단을 구성하기 위한 정보가 20번 줄에 있네요. 19번 줄은 윗 문단을 구성하기 위한 정보입니다. 헌데 글자는 있는데 텍스트 배경 색깔에 대한 정보는 어디있을까요? 그 정답은 미리 알려 드리죠. 19번 줄, 20번 줄 양 끝에 존재하는 p /p가 보이시나요? 이 녀석들이 글자의 배경 색깔을 지정해줍니다. 그러면 p2, p3는 어디에 정의돼 있을까요? 바로 webgl.css파일의 24번 줄, 27번 줄에 정의돼 있습니다. </p3><br></br>
+
+    <li>좋아요, 글자 앞에 점이 붙었네요. 이건 또 뭘까요?</li>
+    <li>텍스트 양 끝에 li /li를 붙이면 이런 식으로 점이 붙습니다! index.html의 22번쨰 줄을 확인하세요!</li>
+ 
+	<h2>  </h2>
+	</div>
+	<h2> 아래 이 녀석은 Canvas입니다 </h2>
+	<p> Reference: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event </p>
+	<canvas id="Tutorial_TextureBoard" width="560" height="360" ></canvas>
+	<br>	<p2> 일단 위 canvas는 index.html의 28번 줄에서 생성됩니다. 그리고 재밌게도 이 캔버스에서는 그림을 그릴 수 있습니다. 그림 한 번 그려보실레요?</p2> </br>
+	<p3> 그림이 그려지는 원리는 간단합니다. canvas는 자체적으로 입력 디바이스의 input을 감지하는 기능을 지원하기 때문에 canvas 위에서 마우스를 클릭하면 그걸 트리거 삼아 함수를 실행시킬 수 있습니다. </p3>
+	<br><p2> 좀 더 자세히 설명하겠습니다. 마우스를 클릭하고 움직였을 때 x,y좌표계에서 두 개의 좌표가 생성됩니다. 첫 번째 좌표에서 두 번째 좌표로 선을 긋는 행위를 반복하는 시으로 캔버스 그림 그리기가 실행됩니다. 그를 위해서 첫 번째 좌표 위치로 moveTo하고 두 번째 좌표 위치로 lineTo합니다. 그 다음 storke하면 이 정보를 토대로 그래픽이 캔버스에 나타나게 되는 겁니다.</p2> </br>
+	<br></br>
+	<p> 그림이 그려지는 코드는 index.html의 34~78에 정의돼 있습니다. 코드의 양쪽 끝에 script /script가 붙어 있어 이것이 코드임을 정의해줍니다. </p>
+		<script>
+		// When true, moving the mouse draws on the canvas
+		let isDrawing = false;
+		let x = 0;
+		let y = 0;
+
+		const myPics = document.getElementById('Tutorial_TextureBoard');
+		const context = myPics.getContext('2d');
+
+		// event.offsetX, event.offsetY gives the (x,y) offset from the edge of the canvas.
+
+		// Add the event listeners for mousedown, mousemove, and mouseup
+		myPics.addEventListener('mousedown', e => {
+		  x = e.offsetX;
+		  y = e.offsetY;
+		  isDrawing = true;
+		});
+
+		myPics.addEventListener('mousemove', e => {
+		  if (isDrawing === true) {
+			drawLine(context, x, y, e.offsetX, e.offsetY);
+			x = e.offsetX;
+			y = e.offsetY;
+		  }
+		});
+
+		window.addEventListener('mouseup', e => {
+		  if (isDrawing === true) {
+			drawLine(context, x, y, e.offsetX, e.offsetY);
+			x = 0;
+			y = 0;
+			isDrawing = false;
+		  }
+		});
+
+		function drawLine(context, x1, y1, x2, y2) {
+		  context.beginPath();
+		  context.strokeStyle = 'yellow';
+		  context.lineWidth = 5;
+		  context.moveTo(x1, y1);
+		  context.lineTo(x2, y2);
+		  context.stroke();
+		  context.closePath();
+		}
+		</script>
+		</div>
+</body>
+<!-- lighting 
+Reference: https://developer.mozilla.org/ko/docs/Web/API/WebGL_API/Tutorial/Lighting_in_WebGL-->
+<body> 
+	<h2> 새로운 canvas인데, 3d를 곁들인</h2>
+	<p> Reference: https://developer.mozilla.org/ko/docs/Web/API/WebGL_API/Tutorial/Lighting_in_WebGL </p>
+	<p> 3D 그래픽을 구성하는 것에 대해 간단히 설명드리겠습니다. 3D는 점, 선, 삼각형을 기본으로 만들어집니다. 최근 언리얼 엔진에서 발표한 차세대 그래픽 소개 영상을 보면 어마무시한 퀄리티로 렌더링된 그래픽의 폴리곤들을 보여주는 장면이 있습니다. 폴리곤이란 해당 그래픽을 구성하는 가장 기본적인 정보를 말합니다. 그리고 그건 삼각형입니다. 뛰어나고 현실적인 그래픽을 렌더링하기 위해서는 엄청난 수의 기본 토대가 필요합니다. 언리얼 엔진에서 구현한 차세대 그래픽의 한 프레임에 들어가는 기본 토대(삼각형)의 개수는 몇 억개에 도달한다고 합니다. 아래 빙글빙글 돌아가고 있는 큐브도 토대는 삼각형입니다. https://www.youtube.com/watch?v=ql8ViKgZ_3A/02:43</p>
+    <canvas id="glcanvas" width="640" height="480" ></canvas>
+	<script type="text/javascript" src="script.js"></script> 
+	<p> 재밌게도 위에서 그렸던 그림이 큐브의 겉면에 그려져 있습니다. 그리고 큐브가 빙빙 돌면서 그림에 음영이 드리워지고 있습니다. 여기서 중요한 것 한 가지, 위 큐브의 토대는 삼각형입니다만 토대의 '겉면'을 그리는 것은 조금 다른 문제입니다. 큐브 자체를 그리는 것과 큐브의 겉면을 그리는 것은 다르다는 얘기입니다. 이를 그래픽 파이프라인에선 vertex shader와 fragment shader로 나누고 있습니다. script.js의 24번 줄, 55번 줄을 확인해 봅시다. 24번 줄의 vsSource는 vertex shader source의 약자입니다. 보시면 그래픽 렌더링 정보를 계산하고 있습니다. 큐브의 위치를 정하고 있는 거죠. 그리고 lighting effect는 pong shading에서 기반한 광원효과입니다. 광원의 정보를 계산하고 있습니다. 55번 줄의 fsSource는 fragment shader source의 약자입니다. vsSource에서 전달해준 정보를 토대로 fsSource에서 겉면을 그리게 됩니다. fsSource를 보시면 vTexturCoord가 존재합니다. 위 canvas에서 그렸던 그림 정보가 vTexturCoord입니다. </p>
+	<p>canvas 그림 정보를 vTexturCoord로 전하는 코드는 script.js의 343번 줄에 위치합니다. 코드를 보시면 gl.Texture...양식의 코드가 자주 등장합니다. 이들을 큰 관점에서 보면 그래픽을 렌더링하는 GPU에게 텍스처 정보를 전달한다는 것을 의미합니다.</p>
+</body>
+
+
+ 
