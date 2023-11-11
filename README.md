@@ -1,0 +1,1 @@
+https://photonstorm.github.io/phaser3-docs/Phaser.Loader.LoaderPlugin.html
