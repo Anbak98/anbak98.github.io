@@ -1,179 +1,161 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <script src="./phaser-3.60.0/dist/phaser-arcade-physics.min.js"></script>
-</head>
 <body>
-
-    <script>
-    class Example extends Phaser.Scene
-    {
-        showDebug = false;
-        player;
-        helpText;
-        debugGraphics;
-        cursors;
-        map;
-
-        preload ()
-        {
-            this.load.setBaseURL('https://raw.githubusercontent.com/Anbak98/anbak98.github.io/main/');
-            this.load.image('tiles', 'assets/tilemaps/tiles/catastrophi_tiles_16.png');
-            this.load.tilemapCSV('map', 'assets/tilemaps/csv/catastrophi_level2.csv');
-            this.load.spritesheet('player', 'assets/sprites/spaceman.png', { frameWidth: 16, frameHeight: 16 });
-        }
-
-        create ()
-        {
-            // When loading a CSV map, make sure to specify the tileWidth and tileHeight
-            this.map = this.make.tilemap({ key: 'map', tileWidth: 16, tileHeight: 16 });
-            const tileset = this.map.addTilesetImage('tiles');
-            const layer = this.map.createLayer(0, tileset, 0, 0);
-
-            //  This isn't totally accurate, but it'll do for now
-            this.map.setCollisionBetween(54, 83);
-
-            this.anims.create({
-                key: 'left',
-                frames: this.anims.generateFrameNumbers('player', { start: 8, end: 9 }),
-                frameRate: 10,
-                repeat: -1
-            });
-            this.anims.create({
-                key: 'right',
-                frames: this.anims.generateFrameNumbers('player', { start: 1, end: 2 }),
-                frameRate: 10,
-                repeat: -1
-            });
-            this.anims.create({
-                key: 'up',
-                frames: this.anims.generateFrameNumbers('player', { start: 11, end: 13 }),
-                frameRate: 10,
-                repeat: -1
-            });
-            this.anims.create({
-                key: 'down',
-                frames: this.anims.generateFrameNumbers('player', { start: 4, end: 6 }),
-                frameRate: 10,
-                repeat: -1
-            });
-
-            this.player = this.physics.add.sprite(50, 100, 'player', 1);
-
-            // Set up the player to collide with the tilemap layer. Alternatively, you can manually run
-            // collisions in update via: this.physics.world.collide(player, layer).
-            this.physics.add.collider(this.player, layer);
-
-            this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
-            this.cameras.main.startFollow(this.player);
-
-            this.debugGraphics = this.add.graphics();
-
-            this.input.keyboard.on('keydown-C', event =>
-            {
-                this.showDebug = !this.showDebug;
-                this.drawDebug();
-            });
-
-            this.cursors = this.input.keyboard.createCursorKeys();
-
-            this.helpText = this.add.text(16, 16, this.getHelpMessage(), {
-                fontSize: '18px',
-                fill: '#ffffff'
-            });
-
-            this.helpText.setScrollFactor(0);
-        }
-
-        update (time, delta)
-        {
-            this.player.body.setVelocity(0);
-
-            // Horizontal movement
-            if (this.cursors.left.isDown)
-            {
-                this.player.body.setVelocityX(-100);
-            }
-            else if (this.cursors.right.isDown)
-            {
-                this.player.body.setVelocityX(100);
-            }
-
-            // Vertical movement
-            if (this.cursors.up.isDown)
-            {
-                this.player.body.setVelocityY(-100);
-            }
-            else if (this.cursors.down.isDown)
-            {
-                this.player.body.setVelocityY(100);
-            }
-
-            // Update the animation last and give left/right animations precedence over up/down animations
-            if (this.cursors.left.isDown)
-            {
-                this.player.anims.play('left', true);
-            }
-            else if (this.cursors.right.isDown)
-            {
-                this.player.anims.play('right', true);
-            }
-            else if (this.cursors.up.isDown)
-            {
-                this.player.anims.play('up', true);
-            }
-            else if (this.cursors.down.isDown)
-            {
-                this.player.anims.play('down', true);
-            }
-            else
-            {
-                this.player.anims.stop();
-            }
-        }
-
-        drawDebug ()
-        {
-            this.debugGraphics.clear();
-
-            if (this.showDebug)
-            {
-                // Pass in null for any of the style options to disable drawing that component
-                this.map.renderDebug(this.debugGraphics, {
-                    tileColor: null, // Non-colliding tiles
-                    collidingTileColor: new Phaser.Display.Color(243, 134, 48, 200), // Colliding tiles
-                    faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Colliding face edges
-                });
-            }
-
-            this.helpText.setText(this.getHelpMessage());
-        }
-
-        getHelpMessage ()
-        {
-            return `Arrow keys to move.\nPress "C" to toggle debug visuals: ${this.showDebug ? 'on' : 'off'}`;
-        }
-    }
-
-    const config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        backgroundColor: '#2d2d2d',
-        parent: 'phaser-example',
-        pixelArt: true,
-        physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 0 }
-            }
-        },
-        scene: Example
-    };
-
-    const game = new Phaser.Game(config);
-
-    </script>
-
+<h1>
+  <img src="https://raw.githubusercontent.com/Anbak98/anbak98.github.io/main/ImageView.jpg" alt="Human">
+  <br>유승민 (1998.05.23)
+</h1>
+  <P>
+    CONTACT:
+    <br> +82 -10-8262-7443
+    <br> anbak98@gmail.com
+  </P>
+<h2>
+  <br> 인사말
+</h2>
+  <p>
+    안녕하세요 유승민입니다.
+    <br> 대학에 입학한 후 게임 개발자를 꿈꾸고 노력하고 있습니다.
+    <br> 여러 직군을 다양하게 경험하다 보니 4년을 함께한 소학회 인연들이 아직까지도 제 직군을 헷갈려 합니다.
+    <br> 이제는 슬슬 한 분야의 스페셜리스트가 되보려합니다.
+    <br> 또한 게임과 함께한 제 20년
+    <br> 덕업일치의 세계에서 즐거이 일하고 싶습니다.
+    <br> 그리고 그동안 게임에게 받은 온갖 감동들,
+    <br> 플레이어들에게 되돌려주고 싶습니다.
+  </p>
+<h2>
+  <br> 활동
+</h2>
+  <p>  
+    2019.03 - 현재  아주대학교 소프트웨어학과 재학, 4-1 학사
+    <br>2019.03 - 2022.01 게임 제작 소학회 TML 활동
+    <br>2021.01 - 2022.01 게임 창업 동아리 COIN-ON 운영
+    <br>2021.07 - 2022.01 머신러닝 몬스터 레벨 디자인 연구
+    <br>2022.01 - 2023.07 군대
+  </p>
+<h2>
+  <br>작품
+</h2>
+  <p>
+         <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2019_%EB%8F%99%EB%AC%BC%EC%9D%98%20%EC%88%A0/Introduction.md">2019 동물의 술</a>
+    <br> <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2020_NewAge/README.md">2020 New Age</a>
+    <br> <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2020_%EB%AC%B4%ED%95%9C%EC%9D%98%20%EB%B2%BD%20%EB%B6%80%EC%88%98%EA%B8%B0/README.md">2020 무한의 벽 부수기</a>
+    <br> <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2020_%EC%A2%80%EB%B9%84%20%EC%95%84%ED%8F%AC%EC%B9%BC%EB%A6%BD%EC%8A%A4/README.md">2020 좀비 아포칼립스</a>
+    <br> <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2021_BUG/README.md">2021 Bug</a>
+    <br> <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2021_Devil's%20Winary/README.md">2021 Devil's Winary</a>     
+    <br> <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2023_Sync%20Sense/README.md">현재 Sync-Sense</a>
+  </p>
+<h2>
+  <br> 기타
+</h2>
+  <p>
+         <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2020_SIDIZ%20%EA%B4%91%EA%B3%A0/README.md">2020 SIDIZE 광고</a> 
+    <br> <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/%EC%95%84%EC%A3%BC%EB%8C%80%20%EC%BB%A4%EB%A6%AC%ED%81%98%EB%9F%BC/%EC%8A%A4%ED%83%80%ED%81%AC%EB%9E%98%ED%94%84%ED%8A%B8%20%EB%A1%A4%20TCP%20UDP%20%EB%B6%84%EC%84%9D.pdf">2021 스타크래프트 & 롤 TCP/UDP 분석</a>
+    <br> <a href="https://drive.google.com/file/d/1dz8ZMtMTKDWj88iDEMkSPdiOXQ0ZkTeo/view">2021년 한국게임학회 추계 학술발표대회 논문집 251P</a>
+    <br> <a href="https://raw.githack.com/Anbak98/anbak98.github.io/main/Project/2021_WebGL-tutorial/index.html">2021 WwbGL Tutorial</a>
+    <br> <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2021_%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%20%EB%AA%AC%EC%8A%A4%ED%84%B0%20%EB%A0%88%EB%B2%A8%20%EB%94%94%EC%9E%90%EC%9D%B8%20%EC%97%B0%EA%B5%AC/README.md">2021 머신러닝 몬스터 레벨 디자인 연구</a>         
+    <br> <a href="https://github.com/Anbak98/anbak98.github.io/blob/main/Project/2023_Artificial%20Hunter%20Vision/README.md">2023 Arificial Hunter Vision</a>
+  </p>
+<h2>
+  <br>  플레이 게임 (1회차 클리어 이상 or 10시간 이상)
+</h2>
+  <P>
+    로스트아크
+    <br> League Of Legends
+    <br> 131시간 보더랜드 2
+    <br> 13시간 보더랜드 프리시퀄
+    <br> 78시간 보더랜드 3
+    <br> 74시간 Thet Are Billons
+    <br> 311시간 테라리아
+    <br> 144시간 몬스터 헌터 월드
+    <br> 73시간 디비니티: 더 오리진 씬 2
+    <br> 24시간 Dying Light 1
+    <br> 17시간 더 포레스트 1
+    <br> 데스티니 가디언즈
+    <br> 20시간 바이오쇼크 1
+    <br> 바이오쇼크 3
+    <br> 65시간 Apex Legends
+    <br> 25시간 어썌신 크리드 브라더후드
+    <br> 53시간 Atlas Reactor
+    <br> 17시간 배트맨 아캄시티
+    <br> 148시간 Company of Heroes
+    <br> 88시간 Company of Heroes 2
+    <br> 14시간 Crypto of Necrodancer
+    <br> Crysis
+    <br> Cuphead
+    <br> Darksiders2
+    <br> Don't starve
+    <br> 37시간 Dragon Age ORIGINS
+    <br> F.E.A.R
+    <br> Goose Goose Duck
+    <br> Fallout 3
+    <br> Skyrim
+    <br> GreenHell
+    <br> HellDivers
+    <br> Harf-Life 2
+    <br> 18시간 Just Cause 2
+    <br> Kingdom Rush
+    <br> Left 4 Dead 2
+    <br> LIMBO
+    <br> MAGICA
+    <br> Majesty 2
+    <br> Mirro's Edge
+    <br> NORTHGARD
+    <br> Orcs Must Die! 2
+    <br> Papo & Yo
+    <br> 87시간 PAYDAY2
+    <br> 포탈 1
+    <br> 포탈 2
+    <br> 프로토타입
+    <br> 프로토타입 2
+    <br> Risk Of Rain
+    <br> 209시간 SATISFACTORY
+    <br> 문명 5
+    <br> Skullgirs 2nd Encore
+    <br> Sniper Elite V2
+    <br> Spec Ops: The Line
+    <br> The Stanley Parable
+    <br> Starbound
+    <br> Stardew Valley
+    <br> To The Moon
+    <br> Tom Clancy's Rainbow Six Siege
+    <br> Tom Clancy's The Division 1
+    <br> 34시간 Hollow Knight
+    <br> 30시간 Metro 2033 Redux
+    <br> 44시간 Dying Light 2
+    <br> 15시간 GUILTY GEAR -STRIVE-
+    <br> 23시간 Metro Exodus
+    <br> 74시간 Project Zomboid
+    <br> 30시간 Sons Of The Forest
+    <br> 50시간 Valheim
+    <br> 27시간 A Dance of Fire and Ice
+    <br> 57시간 Lobotomy Corporation
+    <br> 41시간 Slay the Spire
+    <br> 젤다의 전설 야생의 숨결
+    <br> 젤다의 전설 왕의 눈물    
+    <br> 젤다의 전설 꿈꾸는 섬
+    <br> 동물의 숲
+    <br> 라쳇 앤 클랭크 리프트 어파트
+    <br> 디트로이드: 비컴 휴먼
+    <br> Starcraft I
+    <br> Starcraft II
+    <br> 사이퍼즈    
+    <br> 슈퍼마리오 오딧세이
+    <br> Celeste    
+    <br> 파타퐁 2    
+    <br> 20시간 더 바인딩 오브 아이작
+    <br> braid
+    <br> 17시간 Surviving Mars
+    <br> 라스트 오브 어스 1
+    <br> 더 다크 픽처스 앤솔로지: 맨 오브 메단
+    <br> 더 다크 픽처스 앤솔로지: 리틀 호프
+    <br> 더 다크 픽처스 앤솔로지: 하우스 오브 애쉬  
+    <br> 콜 오브 듀티 모던워페워 1
+    <br> Hellblade: Senua's Sacrifice    
+    <br> Tomb Raider
+    <br> Riso Of Tomb Raider
+    <br> Team Fotress    
+    <br> PUBG: BATTLEGROUNDS
+  </p>
 </body>
 </html>
