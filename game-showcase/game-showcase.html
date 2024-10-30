@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>앙박의 게임 책장</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .shelf-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            width: 80%;
+        }
+
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+        }
+
+            .game-card img {
+                width: 100%;
+                height: 100%;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .img-gray {
+                filter: grayscale(100%); /* 흑백 효과 */
+            }
+
+            .game-title {
+                padding: 10px;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            .game-info {
+                font-size: 14px;
+                margin: 2px 0;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="shelf-container">
+        <!-- 예제 게임 카드 -->
+        <div class="game-card">
+            <img src="bubble-bobble.png" alt="Bubble Bobble" class="img-gray">
+                <div class="game-title">Bubble Bobble</div>
+                <div class="game-info">2006</div>
+        </div>
+        <div class="game-card">
+            <img src="metalslug.jpg" alt="Metal Slug" class="img-gray">
+                <div class="game-title">Metal Slug</div>
+                <div class="game-info">2006</div>
+        </div>
+        <div class="game-card">
+            <img src="cyberpunk2077.png" alt="CyberPunk2077">
+                <div class="game-title">CyberPunk2077</div>
+                <div class="game-info">2024 (121h)</div>
+        </div>
+        <div class="game-card">
+            <img src="fallout4.jpg" alt="">
+                <div class="game-title">Fallout4</div>
+                <div class="game-info">2024 (169.1h)</div>
+        </div>
+        <div class="game-card">
+            <img src="super-meat-boy.png" alt="s">
+                <div class="game-title">SuperMeatBoy</div>
+                <div class="game-info">2024 (3.6h)</div>
+        </div>
+        <!-- 추가적인 게임 카드들은 여기 추가 가능 -->
+    </div>
+
+</body>
+</html>
