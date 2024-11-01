@@ -39,23 +39,18 @@
 </head>
 <body>
     <div class="button-container">
-        <button class="btn" id="btn1">스테이터스</button>
-        <button class="btn" id="btn2">게임로그</button>
-        <button class="btn" id="btn4">게임진열장</button>
+        <button class="btn" id="btn1">프로필</button>
+        <button class="btn" id="btn4">게임</button>
     </div>
 
     <script>
         $(document).ready(function() {
             $('#btn1').click(function() {
-                window.location.href = 'status.html';
-            });
-
-            $('#btn2').click(function() {
-                window.location.href = 'log.html'; 
+                window.location.href = 'pages/profile/profile.html';
             });
 
             $('#btn4').click(function () {
-                window.location.href = 'game-showcase/game-showcase.html';
+                window.location.href = 'pages/game-showcase/game-showcase.html';
             });
         });
     </script>

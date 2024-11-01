@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>앙박의 게임 책장</title>
+    <style>
+        /* 기존 스타일 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 80%;
+            width: 80%;
+            overflow: hidden;
+            align-items: center;
+        }
+
+        .year-game-pair {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+            padding: 15px;
+            margin: 10px 0;
+            transition: all 0.3s;
+            opacity: 0.5;
+            transform: scale(0.8);
+            outline: 2px solid transparent;
+            border-radius: 8px;
+        }
+
+            .year-game-pair.selected {
+                opacity: 1;
+                transform: scale(1);
+                outline: 2px solid #333;
+            }
+
+        .year {
+            font-size: 1.5rem;
+            color: #333;
+            transition: font-size 0.3s;
+        }
+
+            .year.selected {
+                font-size: 2rem;
+            }
+
+        .shelf-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, 100px);
+            gap: 10px;
+            width: 100%;
+        }
+
+        .game-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+            width: 100px;
+            height: 150px;
+            padding: 5px;
+            background-color: #e0ffe0;
+            transition: background-color 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+
+            .game-card:hover {
+                transform: scale(1.1);
+            }
+
+            .game-card img {
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-bottom: 1px solid #ddd;
+            }
+
+        .game-title {
+            padding: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .game-info {
+            font-size: 12px;
+            color: #555;
+            margin: 2px 0;
+        }
+
+        .game-card.inactive {
+            background-color: #d3d3d3;
+            cursor: no-drop;
+            pointer-events: none;
+            transform: none;
+        }
+
+            .game-card.inactive.gray-filter {
+                filter: grayscale(100%);
+                background-color: #d3d3d3;
+            }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            display: flex;
+            width: 80%;
+            height: 80%;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: auto;
+        }
+
+        .image-list {
+            width: 20%;
+            height: 100%;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            gap: 5px;
+        }
+
+            .image-list img {
+                width: 100%;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: transform 0.2s;
+            }
+
+                .image-list img:hover {
+                    transform: scale(1.05);
+                    outline: 2px solid #ddd;
+                }
+
+        .selected-image {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+            .selected-image img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .modal-content {
+                flex-direction: column;
+                overflow-y: auto;
+                width: 90%;
+            }
+
+            .image-list {
+                width: 100%;
+            }
+
+            .selected-image {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="year-game-pair selected" data-year="2024">
+            <div class="year selected">2024</div>
+            <div class="shelf-container">
+                <div class="game-card inactive" data-folder="images/supermeatboy" data-image-count="7" onclick="openModal(this)">
+                    <img src="images/supermeatboy/thumb.jpg" alt="SuperMeatBoy">
+                    <div class="game-title">SuperMeatBoy</div>
+                    <div class="game-info">3.6h</div>
+                </div>
+                <div class="game-card" data-folder="images/cyberpunk2077" data-image-count="7" onclick="openModal(this)">
+                    <img src="images/cyberpunk2077/thumb.jpg" alt="CyberPunk2077">
+                    <div class="game-title">CyberPunk2077</div>
+                    <div class="game-info">121h</div>
+                </div>
+                <div class="game-card inactive" data-folder="images/fallout4" data-image-count="15" onclick="openModal(this)">
+                    <img src="images/fallout4/thumb.jpg" alt="Fallout4">
+                    <div class="game-title">Fallout4</div>
+                    <div class="game-info">169.1h</div>
+                </div> 
+            </div>
+        </div>
+        <div class="year-game-pair selected" data-year="2023">
+            <div class="year selected">2023</div>
+            <div class="shelf-container">
+
+            </div>
+        </div>
+        <div class="year-game-pair selected" data-year="2020">
+            <div class="year selected">2020</div>
+            <div class="shelf-container">
+
+            </div>
+        </div>
+        <div class="year-game-pair selected" data-year="2019">
+            <div class="year selected">2019</div>
+            <div class="shelf-container">
+
+            </div>
+        </div>
+        <div class="year-game-pair selected" data-year="2018">
+            <div class="year selected">2018</div>
+            <div class="shelf-container">
+            </div>
+        </div>
+        <div class="year-game-pair selected" data-year="2017">
+            <div class="year selected">2017</div>
+            <div class="shelf-container">
+            </div>
+        </div>
+        <div class="year-game-pair selected" data-year="2016">
+            <div class="year selected">2016</div>
+            <div class="shelf-container">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="gameModal">
+        <div class="modal-close" onclick="closeModal()">&times;</div>
+        <div class="modal-content">
+            <div class="image-list" id="imageList"></div>
+            <div class="selected-image" id="selectedImage">
+                <img src="" alt="Selected Image" id="mainImage">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const yearGamePairs = Array.from(document.querySelectorAll('.year-game-pair'));
+        let selectedIndex = 0;
+
+        function updateView() {
+            yearGamePairs.forEach((pair, i) => {
+                pair.classList.toggle("selected", i === selectedIndex);
+                pair.querySelector(".year").classList.toggle("selected", i === selectedIndex);
+            });
+
+            yearGamePairs[selectedIndex].scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+
+        function scrollHandler(event) {
+            if (event.deltaY > 0) {
+                selectedIndex = (selectedIndex + 1) % yearGamePairs.length;
+            } else {
+                selectedIndex = (selectedIndex - 1 + yearGamePairs.length) % yearGamePairs.length;
+            }
+            updateView();
+        }
+
+        document.body.addEventListener("wheel", scrollHandler);
+        updateView();
+
+        function openModal(gameCard) {
+            if (gameCard.classList.contains("inactive")) {
+                return;
+            }
+
+            const folder = gameCard.getAttribute('data-folder');
+            const imageCount = parseInt(gameCard.getAttribute('data-image-count'));
+            const modal = document.getElementById("gameModal");
+            const imageList = document.getElementById("imageList");
+            const mainImage = document.getElementById("mainImage");
+
+            imageList.innerHTML = '';
+            for (let i = 1; i <= imageCount; i++) {
+                const img = document.createElement("img");
+                img.src = `${folder}/${i}.jpg`;
+                img.alt = `Image ${i}`;
+                img.onclick = () => {
+                    mainImage.src = img.src;
+                    mainImage.alt = img.alt;
+                };
+                imageList.appendChild(img);
+            }
+
+            mainImage.src = `${folder}/1.jpg`;
+            mainImage.alt = `Image 1`;
+            modal.style.display = "flex";
+
+            document.body.removeEventListener("wheel", scrollHandler);
+        }
+
+        function closeModal() {
+            document.getElementById("gameModal").style.display = "none";
+            document.body.addEventListener("wheel", scrollHandler);
+        }
+    </script>
+</body>
+</html>
