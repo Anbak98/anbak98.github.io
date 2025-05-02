@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .btn {
+            display: block;
+            width: 200px;
+            padding: 15px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button class="btn" id="btn1">프로필</button>
+        <button class="btn" id="btn4">게임</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#btn1').click(function() {
+                window.location.href = 'pages/profile/profile.html';
+            });
+
+            $('#btn4').click(function () {
+                window.location.href = 'pages/game-showcase/game-showcase.html';
+            });
+        });
+    </script>
+</body>
+</html>
