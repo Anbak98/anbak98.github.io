@@ -1,0 +1,370 @@
+/* reset-ish for our area to avoid external utilities interfering */
+.timeline-container,
+.timeline-row,
+.side,
+.card-group,
+.info-card,
+.center-zone {
+  box-sizing: border-box;
+}
+
+/* 중앙 수직선 */
+.vertical-line {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100vh;
+  background-color: #777;
+  z-index: 300;
+  pointer-events: none;
+}
+
+/* 전체 래퍼 */
+.timeline-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 50vh;
+  padding-bottom: 50vh;
+}
+
+/* 한 연도 row: 그리드로 3영역 확보(좌/중/우) */
+.timeline-row {
+  display: grid;
+  grid-template-columns: 1fr 160px 1fr; /* 왼쪽 | 중앙 | 오른쪽 */
+  align-items: start;                    /* 카드 높이에 따라 늘어나게 */
+  gap: 24px;
+  padding: 24px 0;
+  width: 100%;
+  /* ensure rows can shrink properly in flex containers above */
+  min-height: 0;
+}
+
+/* 좌/우 영역 공통 */
+.side {
+  display: flex !important;         /* 강제 지정: 다른 규칙 덮어쓰기 */
+  flex-direction: row;              /* 가로 배치 */
+  flex-wrap: nowrap;                /* card-group 내에서 wrap 처리 */
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 0;
+}
+
+/* 카드 그룹: 내부에서 카드들이 가로로 배치되고, 부족하면 wrap */
+.card-group {
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: wrap;                  /* 여기서 줄바꿈 발생 */
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 100%;
+  /* allow card-group to expand vertically so row height grows */
+  align-content: flex-start;
+}
+
+/* 개별 카드 */
+/* explicit display + max-width so images don't force layout */
+.info-card {
+  display: block;
+  width: 140px;             /* 카드 가로 크기 */
+  max-width: 40vw;          /* responsive cap */
+  padding: 10px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* 이미지 스타일 (크기 고정으로 레이아웃 안정화) */
+.info-card img {
+  display: block;
+  width: 100%;
+  height: 90px;             /* 고정 높이로 카드 높이 안정화 — 필요 시 조정 */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 이름 텍스트 */
+.info-card .name {
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+  word-break: break-word;
+}
+
+/* ============================
+   🟦 카드 Hover 애니메이션
+============================ */
+.info-card {
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Hover 시 입체감 + 확대 */
+.info-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+  filter: brightness(1.07);
+}
+
+/* 카드 이미지 부드럽게 확대 */
+.info-card img {
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover img {
+  transform: scale(1.08);
+}
+
+/* 중앙 영역 (dot + year) */
+.center-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 6px 0;
+}
+
+/* dot */
+.dot {
+  width: 14px;
+  height: 14px;
+  background: #777;
+  border-radius: 50%;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.dot.active {
+  background: #1e88e5;
+  transform: scale(1.25);
+}
+
+/* year */
+.year {
+  font-size: 16px;
+  color: #666;
+}
+
+.year.active {
+  color: #1e88e5;
+  font-weight: 700;
+}
+
+/* 왼쪽 정렬/오른쪽 정렬 보조 클래스 (grid 영역 내 정렬) */
+.left-side { justify-content: flex-end; }
+.right-side { justify-content: flex-start; }
+
+/* small screens: responsive stacking */
+@media (max-width: 720px) {
+  .timeline-row {
+    grid-template-columns: 1fr; /* 한 컬럼으로 스택 */
+    gap: 12px;
+  }
+  .center-zone {
+    order: 2;
+  }
+  .side {
+    order: 1;
+    justify-content: center;
+  }
+  .card-group { justify-content: center; }
+}
+
+/* 전체 상단 네비게이션 */
+.navbar {
+  width: 100%;
+  height: 60px;
+  background: #ffffffcc; /* 반투명 흰색 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e5e5;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+}
+
+/* 내부 콘텐츠 정렬 */
+.nav-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 로고/제목 */
+.nav-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* 메뉴 */
+.nav-menu {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #333;
+  padding: 6px 0;
+  transition: color 0.2s;
+}
+
+.nav-menu a:hover {
+  color: #1e88e5;
+}
+
+/* 모바일 대응 */
+@media (max-width: 700px) {
+  .nav-menu {
+    gap: 16px;
+  }
+  .nav-logo {
+    font-size: 18px;
+  }
+}
+
+/* 🟪 작은 필터 메뉴바 */
+.filter-bar {
+  position: sticky;
+  top: 60px;            /* 메인 메뉴바 바로 아래 */
+  z-index: 900;
+  background: #ffffffdd;
+  backdrop-filter: blur(6px);
+  padding: 10px 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.filter-bar button {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  transition: .25s;
+  font-size: 14px;
+}
+
+.filter-bar button.active {
+  background: #1e88e5;
+  color: #fff;
+  border-color: #1e88e5;
+  box-shadow: 0 0 6px rgba(30, 136, 229, 0.5);
+}
+
+.filter-bar button:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== 카드 fade animation ===== */
+.fade-card {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.fade-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== 필터 버튼 효과 ===== */
+.filter-bar button {
+  transition: 0.25s ease;
+}
+
+.filter-bar button.active {
+  background: #1e88e5;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(30, 136, 229, 0.4);
+}
+
+/* ===============================
+   🔥 3D TILT 기본 스타일
+================================ */
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 800px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover 시 더 선명하게 */
+.tilt-card:hover {
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ===============================
+   🫧 Floating Bubble Effect
+================================ */
+.bubble {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 버블 자체 */
+.bubble::before,
+.bubble::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8), rgba(255,255,255,0));
+  border-radius: 50%;
+  animation: bubbleFloat 4s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+/* 랜덤 위치 1 */
+.bubble::before {
+  left: 10%;
+  top: 80%;
+  animation-duration: 5s;
+}
+
+/* 랜덤 위치 2 */
+.bubble::after {
+  left: 70%;
+  top: 90%;
+  animation-duration: 6s;
+}
+
+/* 떠오르는 애니메이션 */
+@keyframes bubbleFloat {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-40px) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.4;
+  }
+}
