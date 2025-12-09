@@ -7,6 +7,7 @@ ng build --configuration production --base-href "https://anbak98.github.io/"
 
 IF %ERRORLEVEL% NEQ 0 (
     echo ❌ 빌드 실패! 스크립트를 종료합니다.
+    pause
     exit /b %ERRORLEVEL%
 )
 
@@ -14,10 +15,11 @@ echo ===================================
 echo 🚀 GitHub Pages에 배포 중...
 echo ===================================
 
-npx angular-cli-ghpages --dir=dist/browser --branch=main
+npx angular-cli-ghpages --dir=dist/anbak98_portfolio/browser --branch=gh-pages
 
 IF %ERRORLEVEL% NEQ 0 (
     echo ❌ 배포 실패! GitHub 설정을 확인하세요.
+    pause
     exit /b %ERRORLEVEL%
 )
 
