@@ -1,0 +1,75 @@
+<header class="navbar">
+  <div class="nav-content">
+    <div class="nav-logo">유승민</div>
+    <nav class="nav-menu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <button (click)="toggleFilter('project')" [class.active]="activeFilters.has('project')">
+    프로젝트
+  </button>
+  <button (click)="toggleFilter('game')" [class.active]="activeFilters.has('game')">
+    게임
+  </button>
+</div>
+
+<main>
+  <div class="vertical-line"></div>
+
+  <div class="timeline-container" id="timeline">
+    @for (y of years; track $index) {
+
+      <div class="timeline-row" #rows (click)="scrollToYear($index)"
+     [class.bg-even]="$index % 2 === 0"
+     [class.bg-odd]="$index % 2 === 1">
+
+        <div class="side left-side">
+          @if (($index % 2) === 0) {
+            <div class="card-group">
+              @for (item of getFilteredCards(y); track item.name) {
+                <div
+                  class="info-card fade-card"
+                  [class.show]="item._visible">
+                  <img [src]="item.photo" />
+                  <div class="name">{{ item.name }}</div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="center-zone">
+          <div class="dot" [class.active]="activeYear === y"></div>
+          <div class="year" [class.active]="activeYear === y">{{ y }}</div>
+        </div>
+
+        <div class="side right-side">
+          @if (($index % 2) === 1) {
+            <div class="card-group">
+              @for (item of getFilteredCards(y); track item.name) {
+                <div
+                  class="info-card fade-card"
+                  [class.show]="item._visible">
+                  <img [src]="item.photo" />
+                  <div class="name">{{ item.name }}</div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+      </div>
+
+    }
+  </div>
+
+  <!-- <section class="content" id="home">
+    <app-home></app-home>
+  </section> -->
+</main>

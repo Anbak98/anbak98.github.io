@@ -6,107 +6,17 @@ import {
   ViewChildren,
   HostListener,
 } from '@angular/core';
-import { Home } from './home/home';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Home],
-  template: `
-    <!-- ==========================
-         🔵 최상단 메뉴바
-    =========================== -->
-    <header class="navbar">
-      <div class="nav-content">
-        <div class="nav-logo">My Website</div>
-        <nav class="nav-menu">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#timeline">Timeline</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
-
-    <!-- ==========================
-         🟣 옵션 필터 메뉴바
-    =========================== -->
-    <div class="filter-bar">
-      <button 
-        (click)="toggleFilter('project')" 
-        [class.active]="activeFilters.has('project')">
-        프로젝트
-      </button>
-
-      <button 
-        (click)="toggleFilter('game')" 
-        [class.active]="activeFilters.has('game')">
-        게임
-      </button>
-    </div>
-
-    <main>
-      <header class="brand-name">
-        <img class="brand-logo" src="/assets/logo.jpg" alt="logo" aria-hidden="true" />
-      </header>
-
-      <div class="vertical-line"></div>
-
-      <div class="timeline-container" id="timeline">
-        @for (y of years; track $index) {
-
-          <div class="timeline-row" #rows (click)="scrollToYear($index)">
-
-            <!-- 왼쪽 카드 -->
-            <div class="side left-side">
-              @if (($index % 2) === 0) {
-                <div class="card-group">
-                  @for (item of getFilteredCards(y); track item.name) {
-                    <div class="info-card fade-card" [class.show]="item._visible">
-                      <img [src]="item.photo" />
-                      <div class="name">{{ item.name }}</div>
-                    </div>
-                  }
-                </div>
-              }
-            </div>
-
-            <!-- 중앙 연도 -->
-            <div class="center-zone">
-              <div class="dot" [class.active]="activeYear === y"></div>
-              <div class="year" [class.active]="activeYear === y">{{ y }}</div>
-            </div>
-
-            <!-- 오른쪽 카드 -->
-            <div class="side right-side">
-              @if (($index % 2) === 1) {
-                <div class="card-group">
-                  @for (item of getFilteredCards(y); track item.name) {
-                    <div class="info-card fade-card" [class.show]="item._visible">
-                      <img [src]="item.photo" />
-                      <div class="name">{{ item.name }}</div>
-                    </div>
-                  }
-                </div>
-              }
-            </div>
-
-          </div>
-
-        }
-      </div>
-
-      <section class="content" id="home">
-        <app-home></app-home>
-      </section>
-    </main>
-  `,
+  templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
 export class App implements AfterViewInit {
   years = Array.from({ length: 2026 - 1998 + 1 }, (_, i) => 2026 - i);
   activeYear: number | null = null;
-
+  
   /** 🔥 필터: 복수 선택 */
   activeFilters = new Set<'project' | 'game'>(['project', 'game']);
 
@@ -116,9 +26,9 @@ export class App implements AfterViewInit {
     { photo: string; name: string; type: 'project' | 'game'; _visible?: boolean }[]
   > = {
     2026: [
-      { photo: '/assets/p1.jpg', name: '홍길동', type: 'project' },
-      { photo: '/assets/p2.jpg', name: 'Shoot Mania', type: 'game' },
-      { photo: '/assets/p3.jpg', name: '박철수', type: 'project' },
+      { photo: "./assets/logo.jpg", name: '홍길동', type: 'project' },
+      { photo: '/src/assets/logo.jpg', name: 'Shoot Mania', type: 'game' },
+      { photo: '/src/app/assets/logo.jpg', name: '박철수', type: 'project' },
     ],
     2025: [
       { photo: '/assets/p4.jpg', name: '이지은', type: 'project' },
@@ -139,16 +49,14 @@ export class App implements AfterViewInit {
     this.initializeVisibility();
   }
 
-  /** 카드 visibility 초기화 */
+  /** 초기 visibility */
   initializeVisibility() {
     for (const year in this.cardsByYear) {
       this.cardsByYear[+year].forEach(card => (card._visible = true));
     }
   }
 
-  /** ===========================
-      🔵 스크롤 시 연도 강조
-  ============================ */
+  /** 스크롤 시 연도 강조 */
   @HostListener('window:scroll')
   onScroll() {
     this.updateActiveYear();
@@ -178,50 +86,43 @@ export class App implements AfterViewInit {
     if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  /** ===========================
-      🔥 필터 적용 함수
-  ============================ */
+  /** 필터 적용 */
   getFilteredCards(year: number) {
     const cards = this.cardsByYear[year] || [];
 
     const visibleTypes = this.activeFilters;
 
-    // 아무것도 선택 X → 모두 숨김
-    if (visibleTypes.size === 0) {
-      cards.forEach(c => c._visible = false);
-      return [];
-    }
+    // if (visibleTypes.size === 0) {
+    //   cards.forEach(c => (c._visible = false));
+    //   return [];
+    // }
 
-    // fade-out
-    cards.forEach(c => c._visible = false);
+    cards.forEach(c => (c._visible = false));
     this.triggerReflow();
 
-    // fade-in 대상만 재활성화
     cards
       .filter(c => visibleTypes.has(c.type))
-      .forEach(c => c._visible = true);
+      .forEach(c => (c._visible = true));
 
     return cards;
   }
 
-  /** ⭐ CSS transition 강제 재적용 */
+  /** CSS transition 초기화 */
   triggerReflow() {
     void document.body.offsetHeight;
   }
 
-  /** ===========================
-      🟣 필터 버튼 토글
-  ============================ */
+  /** 필터 버튼 토글 */
   toggleFilter(type: 'project' | 'game') {
     if (this.activeFilters.has(type)) {
       this.activeFilters.delete(type);
     } else {
       this.activeFilters.add(type);
     }
-
     this.triggerReflow();
   }
-  
+
+  /** 카드 3D 효과 */
   onCardMouseMove(event: MouseEvent, card: HTMLElement) {
     const rect = card.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -234,6 +135,6 @@ export class App implements AfterViewInit {
   }
 
   onCardMouseLeave(card: HTMLElement) {
-    card.style.transform = "rotateX(0) rotateY(0) scale(1)";
+    card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
   }
 }
