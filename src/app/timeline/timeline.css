@@ -1,0 +1,154 @@
+/* ==============================
+   Reset-ish
+============================== */
+.timeline-container,
+.timeline-row,
+.side,
+.card-group,
+.info-card,
+.center-zone {
+  box-sizing: border-box;
+}
+
+/* ==============================
+   중앙 수직선
+============================== */
+.vertical-line {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100vh;
+  background-color: #777;
+  z-index: 0; /* 카드 위로 올라오도록 카드 z-index > 0 */
+  pointer-events: none;
+}
+
+/* ==============================
+   Timeline Container
+============================== */
+.timeline-container {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding-top: 50vh;
+  padding-bottom: 50vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==============================
+   Timeline Row
+============================== */
+.timeline-row {
+  display: grid;
+  grid-template-columns: 1fr 160px 1fr;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px 0;
+  width: 100%;       /* 화면 폭 전체 */
+  position: relative;
+  z-index: 1;
+}
+
+/* 좌/우 영역 공통 */
+.side {
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 0;
+  z-index: 2; /* 카드가 중앙 위에 렌더링 */
+}
+
+/* 왼쪽 그룹: 카드가 오른쪽 → 왼쪽으로 쌓임 */
+.left-side .card-group {
+  flex-flow: row-reverse wrap;
+}
+
+/* 오른쪽 그룹: 카드가 왼쪽 → 오른쪽으로 쌓임 (기본 row) */
+.right-side .card-group {
+  flex-flow: row wrap;
+}
+
+/* 카드 그룹 */
+.card-group {
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 100%;
+  align-content: flex-start;
+  z-index: 2;
+  position: relative;
+}
+
+/* ==============================
+   중앙 영역
+============================== */
+.center-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 6px 0;
+  z-index: 1; /* 카드 위로 올라오지 않도록 낮게 */
+  position: relative;
+}
+
+/* dot */
+.dot {
+  width: 14px;
+  height: 14px;
+  background: #777;
+  border-radius: 50%;
+  transition: transform .2s ease, background .2s ease;
+  z-index: 1;
+}
+
+.dot.active {
+  background: #1e88e5;
+  transform: scale(1.25);
+}
+
+/* year */
+.year {
+  font-size: 16px;
+  color: #666;
+  z-index: 1;
+}
+
+.year.active {
+  color: #1e88e5;
+  font-weight: 700;
+}
+
+
+.timeline-row {
+  transition: background 0.3s ease;
+}
+
+/* ==============================
+   Responsive
+}
+============================== */
+@media (max-width: 720px) {
+  .card-group {
+    flex-flow: row wrap !important;
+  }
+  .timeline-row.bg-even:nth-child(even) { background: rgba(100,150,255,0.15); }
+  .timeline-row.bg-even:nth-child(odd)  { background: rgba(255, 255, 255, 0.15); }
+
+  .timeline-row.bg-odd:nth-child(even)  { background: rgba(100,150,255,0.15); }
+  .timeline-row.bg-odd:nth-child(odd)   { background: rgba(255, 255, 255, 0.15); }
+  .timeline-row { grid-template-columns: 1fr; gap: 12px; }
+  .center-zone { order: 2; }
+  .side { order: 3; justify-content: center; }
+  .card-group { justify-content: center; }
+}

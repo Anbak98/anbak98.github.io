@@ -3,7 +3,7 @@ echo ===================================
 echo 🔧 Angular 앱 빌드 중...
 echo ===================================
 
-ng build --configuration production --base-href "https://anbak98.github.io/"
+ng build --output-path --base-href /anbak98.github.io/
 
 IF %ERRORLEVEL% NEQ 0 (
     echo ❌ 빌드 실패! 스크립트를 종료합니다.

@@ -1,0 +1,38 @@
+
+/* ==============================
+    필터바
+============================== */
+
+.filter-bar {
+  position: sticky;
+  top: 60px;
+  z-index: 900;
+  background: #ffffffdd;
+  backdrop-filter: blur(6px);
+  padding: 10px 0;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.filter-bar button {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  transition: 0.25s ease;
+  font-size: 14px;
+}
+
+.filter-bar button.active {
+  background: #1e88e5;
+  color: white;
+  border-color: #1e88e5;
+  box-shadow: 0 0 6px rgba(30, 136, 229, 0.5);
+}
+
+.filter-bar button:hover {
+  transform: translateY(-2px);
+}

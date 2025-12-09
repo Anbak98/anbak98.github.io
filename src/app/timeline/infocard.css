@@ -1,0 +1,85 @@
+/* ==============================
+   카드 스타일
+============================== */
+.info-card {
+  display: block;
+  width: 140px;
+  max-width: 40vw;
+  padding: 10px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  text-align: center;
+  box-sizing: border-box;
+  z-index: 3;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  overflow: hidden;
+}
+
+/* 이미지 */
+.info-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* 이름 · 월 · 시간 텍스트 */
+.info-card .name {
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.15;
+  height: 2.2em;          /* 2줄 공간 */
+  overflow: hidden;
+
+  display: flex;          /* 세로 중앙 정렬을 위한 flex */
+  align-items: center;    /* 세로 가운데 */
+  justify-content: center;/* 가로 가운데 (필요 없으면 제거) */
+
+  word-break: keep-all;
+  text-align: center;
+}
+
+/* Hover */
+.info-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 18px rgba(0,0,0,0.18);
+  filter: brightness(1.07);
+}
+
+.info-card:hover img {
+  transform: scale(1.08);
+}
+
+/* fade animation */
+.fade-card {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.fade-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  .info-card {
+    width: 100px;      /* ← 원하는 크기로 조절 가능 */
+    padding: 6px;      /* 패딩도 조금 줄임 */
+  }
+
+  .info-card img {
+    aspect-ratio: 1 / 1;  /* 정사각형 이미지 */
+  }
+
+  .info-card .name {
+    font-size: 12px;   /* 텍스트도 조금 줄임 */
+    height: 2em;
+  }
+}
