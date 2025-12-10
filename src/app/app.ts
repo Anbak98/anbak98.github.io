@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Timeline } from './timeline/timeline';
+import { RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Infocard } from './infocard';
 import { CARDS_BY_YEAR } from './datas/cards';
@@ -7,7 +7,7 @@ import { CARDS_BY_YEAR } from './datas/cards';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, Timeline],
+  imports: [CommonModule, RouterModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })

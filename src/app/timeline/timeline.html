@@ -1,65 +1,82 @@
-<p>timeline works!</p>
-
-
-<div class="filter-bar">
-  <button (click)="toggleFilter('project')" [class.active]="activeFilters.has('project')">
-    프로젝트
+<!-- 메인 필터 -->
+<div class="filter-bar main-filter">
+  <button (click)="toggleFilter('project')" [class.active]="activeFilters.has('project')">프로젝트</button>
+  <button (click)="toggleFilter('game')" [class.active]="activeFilters.has('game')">게임</button>
+  <button class="sub-toggle" (click)="showSubFilters = !showSubFilters">
+    {{ showSubFilters ? '⬆ 서브필터 접기' : '⬇ 서브필터 펼치기' }}
   </button>
-  <button (click)="toggleFilter('game')" [class.active]="activeFilters.has('game')">
-    게임
-  </button>
+</div>
+
+<!-- 서브 필터 -->
+<div class="filter-bar sub-filter" *ngIf="subFilters.size > 0 && showSubFilters">
+  @for (sub of subFilters; track sub) {
+    <button (click)="toggleSubFilter(sub)" [class.active]="activeSubFilters.has(sub)">{{ sub }}</button>
+  }
 </div>
 
 <main>
   <div class="vertical-line"></div>
-
   <div class="timeline-container" id="timeline">
     @for (y of years; track $index) {
+      <div class="timeline-row" #rows (click)="scrollToYear($index)" [class.bg-even]="$index % 2 === 0" [class.bg-odd]="$index % 2 === 1">
 
-    <div class="timeline-row" #rows (click)="scrollToYear($index)" [class.bg-even]="$index % 2 === 0"
-      [class.bg-odd]="$index % 2 === 1">
-
-      <div class="side left-side">
-        @if (($index % 2) === 0) {
-        <div class="card-group">
-          @for (item of getFilteredCards(y); track item.name) {
-          <div class="info-card fade-card" [class.show]="item._visible">
-            <img [src]="item.photo" />
-            <div class="name" autoShrink>{{ item.name }}</div>
-            <div class="name" autoShrink>{{ item.time }} h</div>
-
-          </div>
+        <!-- LEFT SIDE -->
+        <div class="side left-side">
+          @if (($index % 2) === 0) {
+            <div class="card-group">
+              @for (item of getFilteredCards(y); track item.name) {
+                <div class="info-card fade-card"
+                     #card
+                     [class.show]="item._visible"
+                     (mousemove)="onCardMouseMove($event, card)"
+                     (mouseleave)="onCardMouseLeave(card)"
+                     (click)="openCardPopup(item); $event.stopPropagation()">
+                  <img [src]="item.photo" />
+                  <div class="name" autoShrink>{{ item.name }}</div>
+                  <div class="name" autoShrink>{{ item.time }} h</div>
+                </div>
+              }
+            </div>
           }
         </div>
-        }
-      </div>
 
-      <div class="center-zone">
-        <div class="dot" [class.active]="activeYear === y"></div>
-        <div class="year" [class.active]="activeYear === y">{{ y }}</div>
-      </div>
+        <!-- CENTER YEAR -->
+        <div class="center-zone">
+          <div class="dot" [class.active]="activeYear === y"></div>
+          <div class="year" [class.active]="activeYear === y">{{ y }}</div>
+        </div>
 
-      <div class="side right-side">
-        @if (($index % 2) === 1) {
-        <div class="card-group">
-          @for (item of getFilteredCards(y); track item.name) {
-          <div class="info-card fade-card" [class.show]="item._visible">
-            <img [src]="item.photo" />
-            <div class="name" autoShrink>{{ item.name }}</div>
-            <div class="name" autoShrink>{{ item.time }} h</div>
-
-          </div>
+        <!-- RIGHT SIDE -->
+        <div class="side right-side">
+          @if (($index % 2) === 1) {
+            <div class="card-group">
+              @for (item of getFilteredCards(y); track item.name) {
+                <div class="info-card fade-card"
+                     #card
+                     [class.show]="item._visible"
+                     (mousemove)="onCardMouseMove($event, card)"
+                     (mouseleave)="onCardMouseLeave(card)"
+                     (click)="openCardPopup(item); $event.stopPropagation()">
+                  <img [src]="item.photo" />
+                  <div class="name" autoShrink>{{ item.name }}</div>
+                  <div class="name" autoShrink>{{ item.time }} h</div>
+                </div>
+              }
+            </div>
           }
         </div>
-        }
+
       </div>
-
-    </div>
-
     }
   </div>
-
-  <!-- <section class="content" id="home">
-    <app-home></app-home>
-  </section> -->
 </main>
+
+<!-- 팝업 컴포넌트 -->
+<!-- 팝업 연동 -->
+<!-- Timeline 하단 -->
+<app-info-popup 
+  [show]="showPopup" 
+  [item]="activeCard"
+  [htmlFile]="activeCardHtml" 
+  (close)="closePopup()">
+</app-info-popup>

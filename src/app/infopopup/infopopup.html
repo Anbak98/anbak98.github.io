@@ -1,0 +1,21 @@
+<div class="card-popup" *ngIf="show">
+  <div class="popup-overlay" (click)="onClose()"></div>
+  <div class="popup-content">
+    <button class="close-btn" (click)="onClose()">✖</button>
+    
+    <img [src]="item?.photo" alt="Photo" />
+    <h2>{{ item?.name }}</h2>
+    <p>{{ item?.year }} {{ item?.month }}월</p>
+    <p>{{ item?.time }} h</p>
+
+    <p>
+      장르: 
+      <span *ngFor="let gen of item?.subTypes ?? []; let last = last">
+  {{ gen }}<span *ngIf="!last">, </span>
+    </span>
+
+    </p>
+
+    <div [innerHTML]="htmlContent"></div>
+  </div>
+</div>

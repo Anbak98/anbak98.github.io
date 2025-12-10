@@ -1,9 +1,11 @@
 export interface Infocard {
   name: string;
   type: 'project' | 'game';
-  time: number;        // 예: 14.5 (시간)
-  year: number;        // 연도
-  month: number;       // 월
+  time: number;
+  year: number;
+  month: number;
   photo: string;
-  _visible?: boolean;  // Timeline 내부에서 사용
+  htmlFile: string;
+  subTypes: string[];   // 🔥 여러 서브타입 가능
+  _visible?: boolean;
 }

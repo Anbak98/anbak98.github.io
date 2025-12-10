@@ -2,14 +2,14 @@
   <div class="nav-content">
     <div class="nav-logo">유승민</div>
     <nav class="nav-menu">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#contact">Contact</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+      <a routerLink="/timeline" routerLinkActive="active">Timeline</a>
+      <a routerLink="/contact" routerLinkActive="active">Contact</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <app-timeline [years]="years" [cardsByYear]="cardsByYear"></app-timeline>
+  <router-outlet></router-outlet> <!-- URL에 따라 컴포넌트 표시 -->
 </main>
