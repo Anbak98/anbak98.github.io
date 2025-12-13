@@ -1,0 +1,45 @@
+<svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grandGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF3C4"/>
+      <stop offset="100%" stop-color="#F4B400"/>
+    </linearGradient>
+
+    <linearGradient id="crownGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="100%" stop-color="#C49000"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Crown -->
+  <path d="M20 6l6 6 10-8 10 8 6-6v10H20V6z"
+        fill="url(#crownGold)" stroke="#9E7C00" stroke-width="1.5"/>
+
+  <circle cx="26" cy="6" r="2" fill="#FFD700"/>
+  <circle cx="36" cy="4" r="2" fill="#FFD700"/>
+  <circle cx="46" cy="6" r="2" fill="#FFD700"/>
+
+  <!-- Cup -->
+  <path d="M18 16h36v12c0 10-8 18-18 18s-18-8-18-18V16z"
+        fill="url(#grandGold)" stroke="#C49000" stroke-width="2"/>
+
+  <!-- Handles -->
+  <path d="M18 20h-7c0 12 7 18 15 18"
+        fill="none" stroke="#C49000" stroke-width="2"/>
+  <path d="M54 20h7c0 12-7 18-15 18"
+        fill="none" stroke="#C49000" stroke-width="2"/>
+
+  <!-- Laurel Left -->
+  <path d="M14 30c-4 6-4 14 2 20"
+        fill="none" stroke="#9E7C00" stroke-width="2"/>
+  <!-- Laurel Right -->
+  <path d="M58 30c4 6 4 14-2 20"
+        fill="none" stroke="#9E7C00" stroke-width="2"/>
+
+  <!-- Stem -->
+  <rect x="32" y="46" width="8" height="8" fill="#F4B400"/>
+  <rect x="24" y="54" width="24" height="6" rx="3" fill="#C49000"/>
+
+  <!-- Base -->
+  <rect x="20" y="60" width="32" height="8" rx="3" fill="#7A5C00"/>
+</svg>

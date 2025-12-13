@@ -1,0 +1,13 @@
+<div class="popup-overlay" 
+     (click)="onOverlayClick($event)"
+     [class.fade-out]="isClosing">
+
+  <div class="popup-wrapper"
+       [class.fade-out]="isClosing">
+       
+    <button class="close-btn" (click)="onClose()">✖</button>
+
+    <div class="popup-content" [innerHTML]="htmlContent"></div>
+  </div>
+
+</div>

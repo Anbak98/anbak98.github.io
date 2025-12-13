@@ -2,7 +2,7 @@ import { Component, AfterViewInit, ElementRef, QueryList, ViewChildren, HostList
 import { Infocard } from '../infocard';
 import { AutoShrinkDirective } from './auto-shrink.directive';
 import { CommonModule } from '@angular/common';
-import { InfoPopup } from '../infopopup/infopopup';
+import { InfoPopup } from './infopopup/infopopup';
 import { CARDS_BY_YEAR } from '../datas/cards';
 
 @Component({

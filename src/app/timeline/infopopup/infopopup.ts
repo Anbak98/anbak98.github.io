@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Infocard } from '../infocard';
+import { Infocard } from '../../infocard';
 
 @Component({
   selector: 'app-info-popup',

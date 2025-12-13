@@ -70,7 +70,6 @@
   display: flex !important;
   flex-wrap: wrap;
   gap: 12px;
-  justify-content: center;
   align-items: flex-start;
   max-width: 100%;
 }

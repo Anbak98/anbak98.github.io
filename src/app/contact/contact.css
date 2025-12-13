@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: row; /* 기본값이 row지만 명시적으로 작성 */
+  min-height: 100vh;   /* 화면 전체 높이를 최소 높이로 지정 */
+  width: 100vw;
+}
+/* 왼쪽 영역 */
+.left {
+  flex: 1;               /* 화면의 절반 */
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 끝으로 정렬 */
+  align-items: center;       /* 세로 중앙 */
+  background-color: #f0f0f0; /* 구분용 색상 */
+}
+
+/* 오른쪽 영역 */
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start; /* 왼쪽 끝으로 정렬 */
+  align-items: center;
+  background-color: #d0d0d0; /* 구분용 색상 */
+}

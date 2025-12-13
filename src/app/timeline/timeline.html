@@ -1,6 +1,6 @@
 <!-- 메인 필터 -->
 <div class="filter-bar main-filter">
-  <button (click)="toggleFilter('project')" [class.active]="activeFilters.has('project')">프로젝트</button>
+  <button (click)="toggleFilter('project')" [class.active]="activeFilters.has('project')">개발</button>
   <button (click)="toggleFilter('game')" [class.active]="activeFilters.has('game')">게임</button>
   <button class="sub-toggle" (click)="showSubFilters = !showSubFilters">
     {{ showSubFilters ? '⬆ 서브필터 접기' : '⬇ 서브필터 펼치기' }}

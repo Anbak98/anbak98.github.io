@@ -1,1 +1,118 @@
-home works!
+<div class="avatar-wrapper">
+  @if (photoUrl) {
+  <img class="avatar" [src]="photoUrl" loading="eager" (error)="onImageError()" />
+  } @else {
+  <div class="avatar avatar--placeholder">{{ initials }}</div>
+  }
+  <h2 class="name">{{ name }}</h2>
+  <p class="bio">{{ typedBio }}</p>
+</div>
+
+<div class="timeline-container">
+  <div class="detail-button-wrapper">
+    <button class="detail-btn">연혁</button>
+  </div>
+
+  <div class="timeline-line"></div>
+
+  <!-- 반복: 2개 블록씩 timeline-row -->
+  @for (block of timeline; track $index; let i = $index){
+  <div class="timeline-row">
+    <!-- 좌측 블록 -->
+
+    <div class="timeline-dot"></div>
+    @if(i%2 ===0 ){ }
+    <div class="timeline-year-block left">
+      @if (i % 2 === 0) {
+      <div class="timeline-year-wrapper year-left">
+      <!-- <div class="timeline-year-wrapper year-left" (click)="toggleYear(i)"> -->
+        <div class="timeline-year">{{ timeline[i].year }}</div>
+      </div>
+      <div class="timeline-items">
+        @if (expandedYears[i]) {
+        @for (item of timeline[i].items; track $index) {
+
+          @if (getMonthHeight(item.monthStart, item.monthEnd) === 0){
+
+          <div class="timeline-header" [style.top.px]="getMonthTop(item.monthStart)" (click)="openPopup(item)">
+            <span class="title">{{ item.title }}</span>
+            @if (item.icon) {
+            <img class="month-icon" [src]="item.icon" />
+            }
+          </div>
+          }
+          @else {
+        <div class="timeline-header-detail-wrapper">
+          <div class="timeline-header" [style.top.px]="getMonthTop(item.monthStart)" (click)="openPopup(item)">
+            <span class="title">{{ item.title }}</span>
+            @if (item.icon) {
+            <img class="month-icon" [src]="item.icon" />
+            }
+          </div>
+          <div class="timeline-line-red" [style.top.px]="getMonthTop(item.monthStart)"
+            [style.height.px]="getMonthHeight(item.monthStart, item.monthEnd)">
+          </div>
+        </div>
+          }
+        }
+        }
+        @else {
+        @for (item of timeline[i].items; track $index;) {
+        <div class="timeline-header" (click)="openPopup(item)">
+          <span class="title">{{ item.title }}</span>
+          @if (item.icon) {
+          <img class="month-icon" [src]="item.icon" alt="icon" />
+          }
+        </div>
+        }
+        }
+      </div>
+      }
+    </div>
+
+    <div class="timeline-year-block right">
+      <!-- 우측 블록 -->
+      @if (i % 2 === 1) {
+      <div class="timeline-year-wrapper year-right" (click)="toggleYear(i)">
+        <div class="timeline-year">{{ timeline[i].year }}</div>
+      </div>
+      <div class="timeline-items">
+        @if (expandedYears[i]) {
+        @for (month of monthsDescending; track $index;) {
+        @for (item of timeline[i].items; track $index;) {
+        @if (month <= item.monthEnd && month>= item.monthStart) {
+          <div class="timeline-month-bar"></div>
+          }
+          @if (item.monthStart === month) {
+          <div class="timeline-header" (click)="openPopup(item)">
+            @if (item.icon) {
+            <img class="month-icon" [src]="item.icon" alt="icon" />
+            }
+            <span class="month">{{ item.monthStart }}</span>
+            <span class="title">{{ item.title }}</span>
+          </div>
+          }
+          }
+          }
+          } @else {
+          @for (item of timeline[i].items; track $index;) {
+          <div class="timeline-header" (click)="openPopup(item)">
+            @if (item.icon) {
+            <img class="month-icon" [src]="item.icon" alt="icon" />
+            }
+            <span class="title">{{ item.title }}</span>
+          </div>
+          }
+          }
+      </div>
+      }
+    </div>
+
+
+  </div>
+  }
+</div>
+
+@if (selectedItem) {
+<app-profilepopup [file]="selectedItem.file" (close)="closePopup()"></app-profilepopup>
+}
