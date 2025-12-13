@@ -1,0 +1,16 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bronzeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E0A96D"/>
+      <stop offset="100%" stop-color="#8D5524"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ribbon -->
+  <path d="M20 2h8l4 14-8 4L20 2z" fill="#388E3C"/>
+  <path d="M36 2h8l-4 18-8-4L36 2z" fill="#2E7D32"/>
+
+  <!-- Medal -->
+  <circle cx="32" cy="40" r="18" fill="url(#bronzeGrad)" stroke="#6D4C41" stroke-width="2"/>
+  <text x="32" y="46" text-anchor="middle" font-size="16" font-weight="bold" fill="#4E342E">3</text>
+</svg>

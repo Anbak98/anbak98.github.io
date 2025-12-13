@@ -1,0 +1,27 @@
+<svg
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- 지붕 -->
+  <polygon points="8,28 32,12 56,28" fill="#1e88e5"/>
+
+  <!-- 본관 -->
+  <rect x="12" y="28" width="40" height="28" rx="2" fill="#90caf9"/>
+
+  <!-- 문 -->
+  <rect x="28" y="38" width="8" height="18" fill="#1565c0"/>
+
+  <!-- 창문 -->
+  <rect x="18" y="34" width="6" height="6" fill="#ffffff"/>
+  <rect x="40" y="34" width="6" height="6" fill="#ffffff"/>
+  <rect x="18" y="44" width="6" height="6" fill="#ffffff"/>
+  <rect x="40" y="44" width="6" height="6" fill="#ffffff"/>
+
+  <!-- 깃대 -->
+  <rect x="31" y="8" width="2" height="10" fill="#555"/>
+
+  <!-- 깃발 -->
+  <polygon points="33,8 44,12 33,16" fill="#e53935"/>
+</svg>
