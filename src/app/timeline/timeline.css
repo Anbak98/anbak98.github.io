@@ -69,6 +69,7 @@
 .card-group {
   display: flex !important;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
   align-items: flex-start;
   max-width: 100%;

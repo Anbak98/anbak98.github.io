@@ -1,9 +1,24 @@
-<p>contact works!</p>
-<div class="container">
-  <div class="left">
-    <span>LEFT</span>
+<div class="contact-container">
+  <!-- 아이콘 영역 -->
+  <div class="icon-row">
+    @for (item of links; track item.name) {
+      <a
+        class="icon-card"
+        [href]="item.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        [title]="item.name"
+      >
+        <img [src]="item.icon" [alt]="item.name" />
+        <span>{{ item.name }}</span>
+      </a>
+    }
   </div>
-  <div class="right">
-    <span>RIGHT</span>
+
+  <!-- 연락처 -->
+  <div class="contact-info">
+    <p>Contact</p>
+    <a href="mailto:{{ email }}">{{ email }}</a>
+    <p>{{phone}}</p>
   </div>
 </div>

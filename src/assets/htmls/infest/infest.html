@@ -1,0 +1,162 @@
+<style>
+.project-detail {
+  line-height: 1.6;
+  color: #222;
+}
+
+.project-title {
+  margin-bottom: 6px;
+}
+
+.project-summary {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+section {
+  margin-top: 24px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tags span {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(30, 136, 229, 0.12);
+  color: #1e88e5;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-list li {
+  margin-bottom: 10px;
+}
+
+.trouble {
+  padding: 10px 12px;
+  margin-top: 10px;
+  border-left: 3px solid #1e88e5;
+  background: rgba(30, 136, 229, 0.05);
+}
+
+.trouble h4 {
+  margin: 0 0 6px;
+}
+</style>
+
+<div class="project-detail">
+
+  <h2 class="project-title">
+    1인칭 3D 생존 / 슈팅 / 멀티 좀비 FPS
+  </h2>
+
+  <p class="project-summary">
+    5인 개발 (기획 1 / 개발 4)
+  </p>
+
+  <!-- Skills -->
+  <section>
+    <h3>🛠 사용 기술</h3>
+    <div class="skill-tags">
+      <span>Unity</span>
+      <span>URP</span>
+      <span>Photon Fusion2</span>
+      <span>NavMesh</span>
+      <span>Input System</span>
+      <span>Analytics</span>
+      <span>Git</span>
+      <span>JSON</span>
+      <span>Ragdoll</span>
+      <span>Raycast</span>
+    </div>
+  </section>
+
+  <!-- Core Features -->
+  <section>
+    <h3>⚙ 핵심 구현</h3>
+
+    <ul class="feature-list">
+      <li>
+        <strong>몬스터</strong>
+        <p>프레임워크 설계 및 전반적인 몬스터 기능 구현</p>
+      </li>
+
+      <li>
+        <strong>플레이어</strong>
+        <p>프레임워크 설계 및 전반적인 플레이어 기능 구현</p>
+      </li>
+
+      <li>
+        <strong>Editor</strong>
+        <p>개발자와 기획자를 위한 편의성 툴 구현</p>
+      </li>
+
+      <li>
+        <strong>Unity Analytics</strong>
+      </li>
+
+      <li>
+        <strong>네트워크 (Photon Fusion2)</strong>
+        <p>매칭부터 게임 플레이까지 전반적인 네트워크 환경 구축</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Trouble Shooting -->
+  <section>
+    <h3>🧠 트러블 슈팅</h3>
+
+    <div class="trouble">
+      <h4>몬스터 이동속도가 씬마다 달라지는 현상</h4>
+      <p><strong>원인</strong> : NavMeshAgent.SetDestination() 기반 Time.deltaTime 오작동</p>
+      <p><strong>해결</strong> : NavMeshAgent.SetMove() + Runner.DeltaTime 사용</p>
+    </div>
+
+    <div class="trouble">
+      <h4>플레이어 조작감 저하 (유저 피드백)</h4>
+      <p><strong>원인</strong> : 네트워크 동기화 간격으로 인한 움직임 끊김</p>
+      <p><strong>해결</strong> : Fusion2 KCC 적용 (보간 + 예측)</p>
+    </div>
+
+    <div class="trouble">
+      <h4>WebGL 빌드 플레이 불가</h4>
+      <p><strong>원인</strong> : Web 구조상 S2P 네트워크 불가 + 용량 제한</p>
+      <p><strong>해결</strong> : 싱글 전용 소규모 맵 제작, MVP 맵 재활용</p>
+    </div>
+
+    <div class="trouble">
+      <h4>몬스터 스테이터스 struct vs class</h4>
+      <p><strong>판단 근거</strong> : MS 가이드 — 16byte 이하 instance는 struct 권장</p>
+      <p><strong>결론</strong> : struct 채택</p>
+    </div>
+  </section>
+
+  <!-- Optimization -->
+  <section>
+    <h3>🚀 최적화</h3>
+    <ul>
+      <li>Light Baking (Batch 30,000 → 10,000)</li>
+      <li>Occlusion Culling (Batch 10,000 → 1,000)</li>
+      <li>Network Packet Size Optimization</li>
+    </ul>
+  </section>
+
+  <!-- User Test -->
+  <section>
+    <h3>👥 유저 테스트</h3>
+    <ul>
+      <li>WebGL (싱글) + PC (싱글 / 멀티) 배포</li>
+      <li>설문 참여자 21명</li>
+      <li>피드백 반영 및 개선</li>
+    </ul>
+  </section>
+
+</div>

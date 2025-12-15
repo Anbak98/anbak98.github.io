@@ -1,60 +1,280 @@
+/* =================================================
+   Popup Root
+================================================= */
 .card-popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 1000;
 
   display: flex;
-  justify-content: center;  /* 가로 중앙 */
-  align-items: center;      /* 세로 중앙 */
+  justify-content: center;
+  align-items: center;
 }
 
+/* =================================================
+   Overlay
+================================================= */
 .popup-overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
+/* =================================================
+   Popup Content
+================================================= */
 .popup-content {
   position: relative;
-  width: auto;
-  max-width: 90%;
-  min-width: 300px;
-  max-height: 90%;       /* 화면 상하 마진 확보 */
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
   z-index: 1010;
-  text-align: center;
 
-  overflow-y: auto;           /* 세로 스크롤 가능 */
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  width: auto;
+  min-width: 300px;
+  max-width: 90%;
+  max-height: 90vh;
+
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
 
   box-sizing: border-box;
+  text-align: center;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
-.popup-content img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
+/* =================================================
+   Close Button
+================================================= */
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
+
   cursor: pointer;
   background: transparent;
   border: none;
+
   font-size: 1.2rem;
+  line-height: 1;
 }
 
-@media (max-height: 600px) {
+/* =================================================
+   Header Layout
+================================================= */
+.popup-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Thumbnail */
+.header-image {
+  width: 240px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+/* Header Info */
+.header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+/* Title */
+.header-info .title {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Meta (year / time) */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* =================================================
+   Chips (Genres / Tags)
+================================================= */
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.chip {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Genre chip */
+.chip.genre {
+  background: rgba(30, 136, 229, 0.12);
+  color: #1e88e5;
+}
+
+/* Tag chip */
+.chip.tag {
+  background: rgba(0, 0, 0, 0.06);
+  color: #333;
+}
+
+/* =================================================
+   Notion HTML Content
+================================================= */
+.popup-content .notion-content {
+  margin-top: 20px;
+  text-align: left;
+  line-height: 1.6;
+  color: #222;
+}
+
+.popup-content .notion-content * {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.popup-content .notion-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 12px auto;
+  border-radius: 8px;
+}
+
+.popup-content .notion-content
+h1,
+h2,
+h3,
+p,
+ul,
+ol {
+  margin: 8px 0;
+  padding: 0;
+}
+
+.popup-content .notion-content [style*="width"] {
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+.popup-content .notion-content [style*="margin-left"] {
+  margin-left: 0 !important;
+}
+
+.popup-content .icon-container {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content .icon {
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.popup-content .icon:hover {
+  opacity: 1;
+}
+
+.popup-content .icon {
+  position: relative;
+}
+
+.popup-content .icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.popup-content .icon:hover::after {
+  opacity: 1;
+}
+
+.popup-content .icon.notion {
+  background-image: url('/assets/icons/notion.svg');
+}
+
+.popup-content .icon.blog {
+  background-image: url('/assets/icons/blog.svg');
+}
+
+.popup-content .icon.github {
+  background-image: url('/assets/icons/github.svg');
+}
+
+.popup-content .icon.steam {
+  background-image: url('/assets/icons/steam.svg');
+}
+
+/* 도전과제 100% */
+.popup-content .icon.achievement-100 {
+  background-image: url('/assets/icons/trophy.svg');
+}
+
+.popup-content .icon.achievement-100.inactive {
+  opacity: 0.3;
+  filter: grayscale(1);
+}
+
+.popup-content .icon.achievement-100.active {
+  opacity: 1;
+}
+/* =================================================
+   Responsive
+================================================= */
+@media (max-width: 480px), (max-height: 600px) {
   .popup-content {
-    max-height: calc(100% - 60px); /* 작은 화면에서는 세로 마진 줄임 */
+    max-height: calc(100vh - 60px);
+  }
+
+  .popup-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .header-image {
+    width: 100%;
+    height: auto;
+    max-height: 240px;
+  }
+
+  .header-info {
+    align-items: center;
+    text-align: center;
   }
 }

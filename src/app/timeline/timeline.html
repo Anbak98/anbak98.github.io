@@ -10,7 +10,7 @@
 <!-- 서브 필터 -->
 <div class="filter-bar sub-filter" *ngIf="subFilters.size > 0 && showSubFilters">
   @for (sub of subFilters; track sub) {
-    <button (click)="toggleSubFilter(sub)" [class.active]="activeSubFilters.has(sub)">{{ sub }}</button>
+  <button (click)="toggleSubFilter(sub)" [class.active]="activeSubFilters.has(sub)">{{ sub }}</button>
   }
 </div>
 
@@ -18,65 +18,83 @@
   <div class="vertical-line"></div>
   <div class="timeline-container" id="timeline">
     @for (y of years; track $index) {
-      <div class="timeline-row" #rows (click)="scrollToYear($index)" [class.bg-even]="$index % 2 === 0" [class.bg-odd]="$index % 2 === 1">
+    <div class="timeline-row" #rows (click)="scrollToYear($index)" [class.bg-even]="$index % 2 === 0"
+      [class.bg-odd]="$index % 2 === 1">
 
-        <!-- LEFT SIDE -->
-        <div class="side left-side">
-          @if (($index % 2) === 0) {
-            <div class="card-group">
-              @for (item of getFilteredCards(y); track item.name) {
-                <div class="info-card fade-card"
-                     #card
-                     [class.show]="item._visible"
-                     (mousemove)="onCardMouseMove($event, card)"
-                     (mouseleave)="onCardMouseLeave(card)"
-                     (click)="openCardPopup(item); $event.stopPropagation()">
-                  <img [src]="item.photo" />
-                  <div class="name" autoShrink>{{ item.name }}</div>
-                  <div class="name" autoShrink>{{ item.time }} h</div>
-                </div>
-              }
-            </div>
-          }
-        </div>
-
-        <!-- CENTER YEAR -->
-        <div class="center-zone">
-          <div class="dot" [class.active]="activeYear === y"></div>
-          <div class="year" [class.active]="activeYear === y">{{ y }}</div>
-        </div>
-
-        <!-- RIGHT SIDE -->
-        <div class="side right-side">
-          @if (($index % 2) === 1) {
-            <div class="card-group">
-              @for (item of getFilteredCards(y); track item.name) {
-                <div class="info-card fade-card"
-                     #card
-                     [class.show]="item._visible"
-                     (mousemove)="onCardMouseMove($event, card)"
-                     (mouseleave)="onCardMouseLeave(card)"
-                     (click)="openCardPopup(item); $event.stopPropagation()">
-                  <img [src]="item.photo" />
-                  <div class="name" autoShrink>{{ item.name }}</div>
-                  <div class="name" autoShrink>{{ item.time }} h</div>
-                </div>
-              }
-            </div>
-          }
-        </div>
-
+      <!-- LEFT -->
+      <div class="side left-side">
+        @if ($index % 2 === 0) {
+        <ng-container *ngTemplateOutlet="cardGroup; context: { $implicit: y }">
+        </ng-container>
+        }
       </div>
+
+      <!-- CENTER -->
+      <div class="center-zone">
+        <div class="dot" [class.active]="activeYear === y"></div>
+        <div class="year" [class.active]="activeYear === y">{{ y }}</div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="side right-side">
+        @if ($index % 2 === 1) {
+        <ng-container *ngTemplateOutlet="cardGroup; context: { $implicit: y }">
+        </ng-container>
+        }
+      </div>
+
+    </div>
     }
+
   </div>
 </main>
 
 <!-- 팝업 컴포넌트 -->
 <!-- 팝업 연동 -->
 <!-- Timeline 하단 -->
-<app-info-popup 
-  [show]="showPopup" 
-  [item]="activeCard"
-  [htmlFile]="activeCardHtml" 
-  (close)="closePopup()">
+<app-info-popup [show]="showPopup" [item]="activeCard" [htmlFile]="activeCardHtml" (close)="closePopup()">
 </app-info-popup>
+<ng-template #cardTemplate let-item>
+  <div class="fade-card card" #card [ngClass]="{
+      'info-card': item.type === 'game',
+      'development-card': item.type !== 'game'
+    }" [class.show]="item._visible" (mousemove)="onCardMouseMove($event, card)" (mouseleave)="onCardMouseLeave(card)"
+    (click)="openCardPopup(item); $event.stopPropagation()">
+    <img [src]="item.photo" />
+
+    <div class="name" autoShrink>{{ item.name }}</div>
+    <div class="name" autoShrink>{{ item.time }}</div>
+
+    @if (item.tags?.length) {
+    <div class="tag-wrapper">
+      @for (tag of item.tags; track tag) {
+      <div class="tag">{{ tag }}</div>
+      }
+    </div>
+    }
+
+    @if (item.icons?.length) {
+    <div class="icon-container">
+      @for (icon of item.icons; track icon.type) {
+      @if (icon.url) {
+      <a class="icon" [ngClass]="icon.type" [attr.data-tooltip]="icon.tooltip" [href]="icon.url" target="_blank"
+        rel="noopener" (click)="$event.stopPropagation()">
+      </a>
+      }
+      @else {
+      <div class="icon" [ngClass]="[icon.type, icon.active ? 'active' : 'inactive']" [attr.data-tooltip]="icon.tooltip">
+      </div>
+      }
+      }
+    </div>
+    }
+  </div>
+</ng-template>
+<ng-template #cardGroup let-year>
+  <div class="card-group">
+    @for (item of getFilteredCards(year); track item.name) {
+    <ng-container *ngTemplateOutlet="cardTemplate; context: { $implicit: item }">
+    </ng-container>
+    }
+  </div>
+</ng-template>

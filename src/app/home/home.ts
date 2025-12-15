@@ -47,6 +47,13 @@ getMonthHeight(start: number, end: number): number {
         icon: ""
       },
       {
+        monthStart: 8,
+        monthEnd: 8,
+        title: "아주대학교 졸업",
+        file: "assets/popup/2025-03.html",
+        icon: ""
+      },
+      {
         monthStart: 2,
         monthEnd: 6,
         title: "팀스파르타 부트캠프 유니티 트랙",
@@ -64,13 +71,6 @@ getMonthHeight(start: number, end: number): number {
         title: "GIGDC 제작부문 동상",
         file: "assets/popup/2025-01.html",
         icon: "assets/icons/bronze.svg"
-      },
-      {
-        monthStart: 8,
-        monthEnd: 8,
-        title: "아주대학교 졸업",
-        file: "assets/popup/2025-03.html",
-        icon: ""
       },
       {
         monthStart: 2,

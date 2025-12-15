@@ -1,21 +1,79 @@
 <div class="card-popup" *ngIf="show">
+  <!-- 오버레이 -->
   <div class="popup-overlay" (click)="onClose()"></div>
+
+  <!-- 카드 본문 -->
   <div class="popup-content">
+    <!-- 닫기 버튼 -->
     <button class="close-btn" (click)="onClose()">✖</button>
-    
-    <img [src]="item?.photo" alt="Photo" />
-    <h2>{{ item?.name }}</h2>
-    <p>{{ item?.year }} {{ item?.month }}월</p>
-    <p>{{ item?.time }} h</p>
 
-    <p>
-      장르: 
-      <span *ngFor="let gen of item?.subTypes ?? []; let last = last">
-  {{ gen }}<span *ngIf="!last">, </span>
-    </span>
+    <!-- 헤더 -->
+    <div class="popup-header">
+      <img
+        class="header-image"
+        [src]="item?.photo"
+        alt="Photo"
+      />
 
-    </p>
+      <div class="header-info">
+        <h2 class="title">{{ item?.name }}</h2>
 
-    <div [innerHTML]="htmlContent"></div>
+        <div class="meta">
+          <span>{{ item?.year }}.{{ item?.month }} ~</span>
+        </div>
+
+        <div class="meta">
+          <span>{{ item?.time }} 소요</span>
+        </div>
+
+        <!-- 장르 -->
+        <div class="chip-group" *ngIf="item?.subTypes?.length">
+          <span
+            class="chip genre"
+            *ngFor="let gen of item?.subTypes"
+          >
+            {{ gen }}
+          </span>
+        </div>
+
+        <!-- 태그 -->
+        <div class="chip-group" *ngIf="item?.tags?.length">
+          <span
+            class="chip tag"
+            *ngFor="let tag of item?.tags"
+          >
+            #{{ tag }}
+          </span>
+        </div>
+          <!-- 아이콘 -->
+  @if (item?.icons?.length) {
+    <div class="icon-container">
+      @for (icon of item?.icons; track icon.type) {
+        @if (icon.url) {
+          <a
+            class="icon"
+            [ngClass]="icon.type"
+            [attr.data-tooltip]="icon.tooltip"
+            [href]="icon.url"
+            target="_blank"
+            rel="noopener"
+            (click)="$event.stopPropagation()"
+          ></a>
+        }
+        @else {
+          <div
+            class="icon"
+            [ngClass]="[icon.type, icon.active ? 'active' : 'inactive']"
+            [attr.data-tooltip]="icon.tooltip"
+          ></div>
+        }
+      }
+    </div>
+  }
+      </div>
+    </div>
+
+    <!-- Notion HTML -->
+    <div class="notion-content" [innerHTML]="htmlContent"></div>
   </div>
 </div>

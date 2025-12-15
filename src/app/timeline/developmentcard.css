@@ -1,13 +1,13 @@
 /* ==============================
    카드 스타일
 ============================== */
-.info-card {
+.development-card {
   display: block;
   width: 140px;
   max-width: 40vw;
   padding: 10px;
   border-radius: 10px;
-  background: white;
+  background: rgb(145, 145, 145);
   border: 1px solid #e0e0e0;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   text-align: center;
@@ -15,11 +15,11 @@
   z-index: 3;
   position: relative;
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-  overflow: visible;
+  overflow: hidden;
 }
 
 /* 이미지 */
-.info-card img {
+.development-card img {
   display: block;
   width: 100%;
   aspect-ratio: 2 / 3;
@@ -29,14 +29,14 @@
 }
 
 /* 이름 · 월 · 시간 텍스트 */
-.info-card .name {
+.development-card .name {
   margin-top: 8px;
   font-weight: 600;
   font-size: 14px;
   line-height: 1.15;
   height: 2.2em;          /* 2줄 공간 */
   overflow: hidden;
-
+  color: #e0e0e0;
   display: flex;          /* 세로 중앙 정렬을 위한 flex */
   align-items: center;    /* 세로 가운데 */
   justify-content: center;/* 가로 가운데 (필요 없으면 제거) */
@@ -46,132 +46,54 @@
 }
 
 /* Hover */
-.info-card:hover {
+.development-card:hover {
   transform: translateY(-6px) scale(1.03);
   box-shadow: 0 10px 18px rgba(0,0,0,0.18);
   filter: brightness(1.07);
 }
 
-.info-card:hover img {
+.development-card:hover img {
   transform: scale(1.08);
 }
 
 /* fade animation */
-.fade-card {
+.development-card .fade-card {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.fade-card.show {
+.development-card .fade-card.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-.info-card .tag-wrapper {
+.development-card .tag-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   margin-top: 6px;
 }
 
-.info-card .tag {
+.development-card .tag {
   font-size: 11px;
   padding: 2px 6px;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.15);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   white-space: nowrap;
 }
-
-.icon-container {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-  align-items: center;
-  justify-content: center;
-}
-
-.icon {
-  width: 30px;
-  height: 30px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-.icon:hover {
-  opacity: 1;
-}
-
-.icon {
-  position: relative;
-}
-
-.icon::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 120%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #222;
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  white-space: nowrap;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s ease;
-}
-
-.icon:hover::after {
-  opacity: 1;
-}
-
-.icon.notion {
-  background-image: url('/assets/icons/notion.svg');
-}
-
-.icon.blog {
-  background-image: url('/assets/icons/blog.svg');
-}
-
-.icon.github {
-  background-image: url('/assets/icons/github.svg');
-}
-
-.icon.steam {
-  background-image: url('/assets/icons/steam.svg');
-}
-
-/* 도전과제 100% */
-.icon.achievement-100 {
-  background-image: url('/assets/icons/trophy.svg');
-}
-
-.icon.achievement-100.inactive {
-  opacity: 0.3;
-  filter: grayscale(1);
-}
-
-.icon.achievement-100.active {
-  opacity: 1;
-}
-
 @media (max-width: 720px) {
-  .info-card {
+  .development-card {
     width: 100px;      /* ← 원하는 크기로 조절 가능 */
     padding: 6px;      /* 패딩도 조금 줄임 */
   }
 
-  .info-card img {
+  .development-card img {
     aspect-ratio: 1 / 1;  /* 정사각형 이미지 */
   }
 
-  .info-card .name {
+  .development-card .name {
     font-size: 12px;   /* 텍스트도 조금 줄임 */
     height: 2em;
   }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Infocard } from './infocard';
-import { CARDS_BY_YEAR } from './datas/cards';
+import { CARDS_BY_YEAR } from '../datas/cards';
 
 @Component({
   selector: 'app-root',

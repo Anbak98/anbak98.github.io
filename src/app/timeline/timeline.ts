@@ -3,14 +3,14 @@ import { Infocard } from '../infocard';
 import { AutoShrinkDirective } from './auto-shrink.directive';
 import { CommonModule } from '@angular/common';
 import { InfoPopup } from './infopopup/infopopup';
-import { CARDS_BY_YEAR } from '../datas/cards';
+import { CARDS_BY_YEAR } from '../../datas/cards';
 
 @Component({
   selector: 'app-timeline',
   standalone: true,
   imports: [CommonModule, AutoShrinkDirective, InfoPopup],
   templateUrl: './timeline.html',
-  styleUrls: ['./timeline.css', './infocard.css', './filterbar.css']
+  styleUrls: ['./timeline.css', './infocard.css', './filterbar.css', './developmentcard.css']
 })
 export class Timeline implements AfterViewInit {
   years = Array.from({ length: 2026 - 1998 + 1 }, (_, i) => 2026 - i);
