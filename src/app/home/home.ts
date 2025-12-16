@@ -75,14 +75,14 @@ getMonthHeight(start: number, end: number): number {
       {
         monthStart: 2,
         monthEnd: 2,
-        title: "첫 언리얼 클라이언트 개발",
+        title: "언리얼 클라이언트 첫 개발",
         file: "assets/popup/2025-03.html",
         icon: ""
       },
       {
         monthStart: 2,
         monthEnd: 2,
-        title: "첫 유니티 클라이언트 개발",
+        title: "유니티 클라이언트 첫 개발",
         file: "assets/popup/2025-03.html",
         icon: ""
       },
@@ -206,7 +206,7 @@ getMonthHeight(start: number, end: number): number {
       {
         monthStart: 2,
         monthEnd: 2,
-        title: "첫 쯔꾸르 게임 제작",
+        title: "쯔꾸르 게임 첫 제작",
         file: "assets/popup/2025-01.html",
         icon: ""
       },
@@ -218,7 +218,7 @@ getMonthHeight(start: number, end: number): number {
       {
         monthStart: 2,
         monthEnd: 2,
-        title: "첫 스팀 게임 플레이",
+        title: "스팀 게임 첫 플레이",
         file: "assets/popup/2025-01.html",
         icon: ""
       },
@@ -242,7 +242,7 @@ getMonthHeight(start: number, end: number): number {
       {
         monthStart: 2,
         monthEnd: 2,
-        title: "첫 스타 유즈맵 제작",
+        title: "스타 유즈맵 첫 제작",
         file: "assets/popup/2025-01.html",
         icon: ""
       },
@@ -254,14 +254,14 @@ getMonthHeight(start: number, end: number): number {
       {
         monthStart: 2,
         monthEnd: 2,
-        title: "첫 공책 게임 제작",
+        title: "공책 게임 첫 제작",
         file: "assets/popup/2025-01.html",
         icon: ""
       },
       {
         monthStart: 2,
         monthEnd: 2,
-        title: "첫 필통 축구 제작",
+        title: "필통 축구 첫 제작",
         file: "assets/popup/2025-01.html",
         icon: ""
       },
@@ -273,7 +273,7 @@ getMonthHeight(start: number, end: number): number {
       {
         monthStart: 5,
         monthEnd: 5,
-        title: "첫 울음",
+        title: "인생 게임 시작",
         file: "assets/popup/2025-01.html",
         icon: ""
       },

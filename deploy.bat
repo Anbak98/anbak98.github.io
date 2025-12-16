@@ -4,6 +4,7 @@ echo 🔧 Angular 앱 빌드 중...
 echo ===================================
 
 ng build --base-href "https://anbak98.github.io/"
+npx angular-cli-ghpages --dir=dist/anbak98_portfolio/browser --branch=gh-pages
 
 IF %ERRORLEVEL% NEQ 0 (
     echo ❌ 빌드 실패! 스크립트를 종료합니다.

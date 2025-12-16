@@ -88,13 +88,13 @@ export const CARDS_BY_YEAR: Record<number, Infocard[]> = {
         },
       ]
     },
-    { name: '스파르타파밍', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/gameplay/infest.png', htmlFile: 'assets/cards/infest.html', subTypes: ['Unity', '퍼즐'] },
-    { name: '23 Days Left', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/gameplay/infest.png', htmlFile: 'assets/cards/infest.html', subTypes: ['Unity', '퍼즐'] },
-    { name: '26 DB Run', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/gameplay/infest.png', htmlFile: 'assets/cards/infest.html', subTypes: ['Unity', '퍼즐'] },
-    { name: 'TextPunk2025', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/gameplay/infest.png', htmlFile: 'assets/cards/infest.html', subTypes: ['Unity', '퍼즐'] },
+    { name: '스파르타파밍', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/development/spartafarming.png', htmlFile: 'assets/cards/spartafarming.html', subTypes: ['Unity', '타이쿤'] },
+    { name: '23 Days Left', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/development/23daysleft.png', htmlFile: 'assets/cards/23daysleft.html', subTypes: ['Unity', '생존'] },
+    { name: '26 DB Run', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/development/26dbrun.png', htmlFile: 'assets/cards/26dbrun.html', subTypes: ['Unity'] },
+    { name: 'TextPunk2025', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/development/textpunk.png', htmlFile: 'assets/cards/textpunk.html', subTypes: ['Unity'] },
     { name: 'MONSTER HUNTER : WILDS', type: 'game', time: '92.9시간', year: 2025, month: 4, photo: 'assets/thumbnail/gameplay/monsterhunterwilds.jpg', htmlFile: '', subTypes: ['액션', '어드벤처'] },
     { name: 'RIFT OF THE NECRODANCER', type: 'game', time: '10.4시간', year: 2025, month: 3, photo: 'assets/thumbnail/gameplay/liftofthenecrodancer.jpg', htmlFile: '', subTypes: ['리듬'] },
-    { name: '돋보기로 카드뒤집기', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/gameplay/infest.png', htmlFile: 'assets/cards/infest.html', subTypes: ['Unity', '퍼즐'] },
+    { name: '험난한 카드 뒤집기', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/development/tiredcardmatch.png', htmlFile: 'assets/cards/tiredcardmatch.html', subTypes: ['Unity', '퍼즐'] },
     { name: 'PALWORLD', type: 'game', time: '137.9시간', year: 2025, month: 2, photo: 'assets/thumbnail/gameplay/palworld.jpg', htmlFile: '', subTypes: ['RPG', '샌드박스'] }
   ],
 
@@ -103,55 +103,63 @@ export const CARDS_BY_YEAR: Record<number, Infocard[]> = {
     { name: 'GUILTY GEAR STRIVE', type: 'game', time: '20.7시간', year: 2024, month: 11, photo: 'assets/thumbnail/gameplay/guiltygearstrive.jpg', htmlFile: '', subTypes: ['대전격투'] },
     { name: 'Fallout 4', type: 'game', time: '169.1시간', year: 2024, month: 10, photo: 'assets/thumbnail/gameplay/fallout4.jpg', htmlFile: '', subTypes: ['RPG', '오픈월드'] },
     { name: 'Project Zomboid', type: 'game', time: '119.2시간', year: 2024, month: 9, photo: 'assets/thumbnail/gameplay/projectzomboid.jpg', htmlFile: '', subTypes: ['생존', '샌드박스'] },
-    { name: '게임의 경험과 현실', type: 'project', time: '2개월', year: 2023, month: 8, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
-    { name: 'Big Defence', type: 'project', time: '1개월', year: 2025, month: 5, photo: 'assets/thumbnail/gameplay/infest.png', htmlFile: 'assets/cards/infest.html', subTypes: ['Unity', '퍼즐'] },
+    { name: '게임의 경험과 현실', type: 'project', time: '1개월', year: 2023, month: 8, photo: 'assets/thumbnail/development/gamephilosophy.png', htmlFile: '', subTypes: [] },
+    { name: 'Big Defence', type: 'project', time: '0.5개월', year: 2025, month: 5, photo: 'assets/thumbnail/development/bigdefence.png', htmlFile: '', subTypes: ['Unity', '디펜스'] },
     { name: 'Zenress Zone Zero', type: 'game', time: '1년', year: 2024, month: 7, photo: 'assets/thumbnail/gameplay/zenresszonezero.jpg', htmlFile: '', subTypes: ['액션', '서브컬처'] },
     { name: 'GRANBLUE FANTASY Relink', type: 'game', time: '105.2시간', year: 2024, month: 7, photo: 'assets/thumbnail/gameplay/granbluefantasyrelink.jpg', htmlFile: '', subTypes: ['RPG', '액션'] },
     { name: 'HELLDIVERS II', type: 'game', time: '99.2시간', year: 2024, month: 4, photo: 'assets/thumbnail/gameplay/helldivers2.jpg', htmlFile: '', subTypes: ['액션', '협동'] },
-    { name: '게임 마왕 철학', type: 'project', time: '2개월', year: 2023, month: 8, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
-    { name: '찜빌방에서 돌 키우기', type: 'project', time: '2개월', year: 2024, month: 2, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
-    { name: 'CQB Training', type: 'project', time: '2개월', year: 2024, month: 2, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
-    { name: '농작물 자동 수확 기계', type: 'project', time: '1개월', year: 2024, month: 2, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
+    { name: '게임 마왕 철학', type: 'project', time: '1개월', year: 2023, month: 8, photo: 'assets/thumbnail/development/gamephilosophy.png', htmlFile: '', subTypes: [] },
+    { name: '찜빌방에서 돌 키우기', type: 'project', time: '2개월', year: 2024, month: 2, photo: 'assets/thumbnail/development/growstone.png', htmlFile: '', subTypes: ['Unity'] },
+    { name: 'CQB Training', type: 'project', time: '2개월', year: 2024, month: 2, photo: 'assets/thumbnail/development/cqbtraining.png', htmlFile: '', subTypes: ['Unity'] },
+    { name: '농작물 자동 수확 기계', type: 'project', time: '1개월', year: 2024, month: 2, photo: 'assets/thumbnail/development/autoharvester.png', htmlFile: '', subTypes: [] },
     { name: 'DYING LIGHT 2 STAY HUMAN', type: 'game', time: '116.7시간', year: 2024, month: 1, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
   ],
 
   2023: [
     { name: '리버스 1999', type: 'game', time: '3개월', year: 2023, month: 10, photo: 'assets/thumbnail/gameplay/reverse1999.jpg', htmlFile: '', subTypes: ['서브컬처'] },
-    { name: 'TwitchChatCare', type: 'project', time: '2개월', year: 2023, month: 8, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
-    { name: 'Artificial Hunter Vision', type: 'project', time: '2개월', year: 2023, month: 8, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
-    { name: 'Sync Sense', type: 'project', time: '2개월', year: 2023, month: 8, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
+    { name: 'TwitchChatCare', type: 'project', time: '2개월', year: 2023, month: 8, photo: 'assets/thumbnail/development/twitchchatcare.png', htmlFile: '', subTypes: ['NLP'] },
+    { name: 'Artificial Hunter Vision', type: 'project', time: '2개월', year: 2023, month: 8, photo: 'assets/thumbnail/development/ahv.png', htmlFile: '', subTypes: ['CV', 'ML'] },
+    { name: 'Sync Sense', type: 'project', time: '2개월', year: 2023, month: 8, photo: 'assets/thumbnail/development/syncsense.png', htmlFile: '', subTypes: ['Unity', '네트워크', '퍼즐'] },
     { name: '젤다의 전설 왕국의 눈물', type: 'game', time: '50시간', year: 2023, month: 7, photo: 'assets/thumbnail/gameplay/zeldatearsofkingdom.jpg', htmlFile: '', subTypes: ['오픈월드', '어드벤처'] },
     { name: 'SONS OF THE FOREST', type: 'game', time: '29.9시간', year: 2023, month: 7, photo: 'assets/thumbnail/gameplay/sonsoftheforest.jpg', htmlFile: '', subTypes: ['생존', '어드벤처'] }
   ],
 
   2022: [
     { name: '탕탕특공대', type: 'game', time: '10시간', year: 2022, month: 9, photo: 'assets/thumbnail/gameplay/tangtangspecial.jpg', htmlFile: '', subTypes: ['뱀서라이크'] },
-    { name: '아이언 마린 : Invasion', type: 'game', time: '5시간', year: 2022, month: 9, photo: 'assets/thumbnail/gameplay/ironmarineinvasion.jpg', htmlFile: '', subTypes: ['전략'] },
-    { name: '명일방주', type: 'game', time: '4년', year: 2022, month: 7, photo: 'assets/thumbnail/gameplay/arknights.jpg', htmlFile: '', subTypes: ['디펜스', '서브컬처'] },
-    { name: '스도리카', type: 'game', time: '50시간', year: 2022, month: 4, photo: 'assets/thumbnail/gameplay/sdorika.jpg', htmlFile: '', subTypes: ['전략'] },
+    { name: '아이언 마린 : Invasion', type: 'game', time: '5시간', year: 2022, month: 9, photo: 'assets/thumbnail/gameplay/ironmarineinvasion.png', htmlFile: '', subTypes: ['전략'] },
+    { name: '명일방주', type: 'game', time: '4년', year: 2022, month: 7, photo: 'assets/thumbnail/gameplay/arknights.jpg', htmlFile: '', subTypes: ['디펜스', '서브컬처']
+      , icons: [  
+        {
+          type: 'achievement-100',
+          active: true,
+          tooltip: '2025.12.14 만렙 달성'
+        },
+      ]
+    },
+    { name: '스도리카', type: 'game', time: '50시간', year: 2022, month: 4, photo: 'assets/thumbnail/gameplay/sdorica.jpg', htmlFile: '', subTypes: ['전략'] },
     { name: '킹덤 러쉬 오리진', type: 'game', time: '5시간', year: 2022, month: 4, photo: 'assets/thumbnail/gameplay/kingdomrushorigins.jpg', htmlFile: '', subTypes: ['디펜스'] },
     { name: '킹덤 러쉬 벤전스', type: 'game', time: '5시간', year: 2022, month: 3, photo: 'assets/thumbnail/gameplay/kingdomrushvengence.jpg', htmlFile: '', subTypes: ['디펜스'] },
     { name: '아이언 마린', type: 'game', time: '5시간', year: 2022, month: 3, photo: 'assets/thumbnail/gameplay/ironmarine.jpg', htmlFile: '', subTypes: ['전략'] },
   ],
 
   2021: [
-    { name: '강화학습 에이전트 레벨디자인 기법 연구', type: 'project', time: '3개월', year: 2021, month: 12, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['Unity', '강화학습'] },
+    { name: '강화학습 에이전트 레벨디자인 기법 연구', type: 'project', time: '3개월', year: 2021, month: 12, photo: 'assets/thumbnail/development/scoredmlagent.png', htmlFile: '', subTypes: ['Unity', 'ML'] },
     { name: 'SATISFACTORY', type: 'game', time: '398.1시간', year: 2021, month: 12, photo: 'assets/thumbnail/gameplay/satisfactory.jpg', htmlFile: '', subTypes: ['시뮬레이션', '샌드박스'] },
-    { name: '블루아카이브', type: 'game', time: '3개월', year: 2021, month: 11, photo: 'assets/thumbnail/gameplay/bluearchaive.jpg', htmlFile: '', subTypes: ['전략', '서브컬처'] },
+    { name: '블루아카이브', type: 'game', time: '3개월', year: 2021, month: 11, photo: 'assets/thumbnail/gameplay/bluearchive.jpg', htmlFile: '', subTypes: ['전략', '서브컬처'] },
     { name: 'Sid Meiers Civilization 5', type: 'game', time: '36.6시간', year: 2021, month: 10, photo: 'assets/thumbnail/gameplay/sidmeierscivilization5.jpg', htmlFile: '', subTypes: ['전략', '시뮬레이션'] },
     { name: '갓 오브 워', type: 'game', time: '56.3시간', year: 2021, month: 8, photo: 'assets/thumbnail/gameplay/godofwar.jpg', htmlFile: '', subTypes: ['액션', '어드벤처'] },
     { name: '포켓몬스터 소드 실드', type: 'game', time: '15.3시간', year: 2021, month: 4, photo: 'assets/thumbnail/gameplay/poketmonswordshield.jpg', htmlFile: '', subTypes: ['어드벤처'] },
     { name: '발헤임', type: 'game', time: '51.1시간', year: 2021, month: 2, photo: 'assets/thumbnail/gameplay/valheim.jpg', htmlFile: '', subTypes: ['생존', '샌드박스'] },
     { name: 'GREEN HELL', type: 'game', time: '20.5시간', year: 2021, month: 2, photo: 'assets/thumbnail/gameplay/greenhell.jpg', htmlFile: '', subTypes: ['생존', '어드벤처'] },
-    { name: '악마의 와이너리', type: 'project', time: '6개월', year: 2021, month: 2, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['Unity', '기확', '캐주얼'] },
+    { name: '악마의 와이너리', type: 'project', time: '6개월', year: 2021, month: 2, photo: 'assets/thumbnail/development/devilswinery.jpg', htmlFile: '', subTypes: ['Unity', '기확', '캐주얼'] },
   ],
 
   2020: [
-    { name: '스타크래프트 네트워크 분석', type: 'project', time: '1개월', year: 2020, month: 9, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['네트워크'] },
+    { name: '스타크래프트 네트워크 분석', type: 'project', time: '1개월', year: 2020, month: 9, photo: 'assets/thumbnail/development/starcraftnetworkreport.png', htmlFile: '', subTypes: ['네트워크'] },
     { name: '젤다의 전설 야생의 숨결', type: 'game', time: '100시간', year: 2020, month: 8, photo: 'assets/thumbnail/gameplay/zeldabreathofwild.jpg', htmlFile: '', subTypes: ['어드벤처', '오픈월드'] },
-    { name: '좀비 아포칼립스', type: 'project', time: '36시간', year: 2020, month: 8, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['Unity', '아트'] },
-    { name: 'New Age', type: 'project', time: '2개월', year: 2020, month: 8, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['Unity', '아트'] },
-    { name: '무한의 벽 부수기', type: 'project', time: '2개월', year: 2020, month: 8, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['Unity', '아트', '캐주얼'] },
+    { name: '좀비 아포칼립스', type: 'project', time: '36시간', year: 2020, month: 8, photo: 'assets/thumbnail/development/zombieapocalypse.png', htmlFile: '', subTypes: ['Unity', '아트'] },
+    { name: 'New Age', type: 'project', time: '2개월', year: 2020, month: 8, photo: 'assets/thumbnail/development/newage.png', htmlFile: '', subTypes: ['Unity', '아트'] },
+    { name: '무한의 벽 부수기', type: 'project', time: '2개월', year: 2020, month: 8, photo: 'assets/thumbnail/development/infinitebreakwall.png', htmlFile: '', subTypes: ['Unity', '아트', '캐주얼'] },
     { name: '가디언 테일즈', type: 'game', time: '1년', year: 2020, month: 7, photo: 'assets/thumbnail/gameplay/guardiantales.png', htmlFile: '', subTypes: ['어드벤처', '서브컬처'] },
     { name: 'Fallout 3', type: 'game', time: '13.4시간', year: 2020, month: 6, photo: 'assets/thumbnail/gameplay/fallout3.jpg', htmlFile: '', subTypes: ['RPG'] },
     { name: '모여봐요 동물의 숲', type: 'game', time: '20시간', year: 2020, month: 5, photo: 'assets/thumbnail/gameplay/animalforest.jpg', htmlFile: '', subTypes: ['타이쿤'] },
@@ -171,12 +179,12 @@ export const CARDS_BY_YEAR: Record<number, Infocard[]> = {
     { name: 'DYING LIGHT', type: 'game', time: '24.1시간', year: 2019, month: 8, photo: 'assets/thumbnail/gameplay/dyinglight.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
     { name: 'Spec Ops: The Line', type: 'game', time: '12시간', year: 2019, month: 7, photo: 'assets/thumbnail/gameplay/specopstheline.jpg', htmlFile: '', subTypes: ['액션'] },
     { name: 'RISE OF THE TOMB RAIDER', type: 'game', time: '12.6시간', year: 2019, month: 6, photo: 'assets/thumbnail/gameplay/riseofthetombraider.jpg', htmlFile: '', subTypes: ['액션', '어드벤처'] },
-    { name: 'WebGL Tutorial', type: 'project', time: '1개월', year: 2019, month: 6, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
+    { name: 'WebGL Tutorial', type: 'project', time: '1개월', year: 2019, month: 6, photo: 'assets/thumbnail/development/webgltutorial.png', htmlFile: '', subTypes: [] },
     { name: 'MONSTER HUNTER WORLD', type: 'game', time: '144.5시간', year: 2019, month: 4, photo: 'assets/thumbnail/gameplay/monsterhunterworld.jpg', htmlFile: '', subTypes: ['액션', '어드벤처'] },
     { name: 'The Elder Scrolls V: Skyrim', type: 'game', time: '20.7시간', year: 2019, month: 4, photo: 'assets/thumbnail/gameplay/skyrim.jpg', htmlFile: '', subTypes: ['RPG', '오픈월드'] },
     { name: 'Kingdom Rush Frontiers', type: 'game', time: '15시간', year: 2019, month: 3, photo: 'assets/thumbnail/gameplay/kingdomrushfrontiers.jpg', htmlFile: '', subTypes: ['디펜스'] },
     { name: 'Northgard', type: 'game', time: '16.6시간', year: 2019, month: 3, photo: 'assets/thumbnail/gameplay/northgard.jpg', htmlFile: '', subTypes: ['전략'] },
-    { name: '투구 : 심해의 모험가', type: 'project', time: '12개월', year: 2019, month: 2, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
+    { name: '투구 : 심해의 모험가', type: 'project', time: '12개월', year: 2019, month: 2, photo: 'assets/thumbnail/development/togo.jpg', htmlFile: '', subTypes: ['Unity', 'QA'] },
     { name: 'Absolver Downfall', type: 'game', time: '3.6시간', year: 2019, month: 3, photo: 'assets/thumbnail/gameplay/absolverdownfall.jpg', htmlFile: '', subTypes: ['액션'] },
     { name: 'THE FOREST', type: 'game', time: '17.2시간', year: 2019, month: 2, photo: 'assets/thumbnail/gameplay/theforest.jpg', htmlFile: '', subTypes: ['생존', '어드벤처'] },
     { name: '바이오쇼크 인피니티', type: 'game', time: '13.2시간', year: 2016, month: 1, photo: 'assets/thumbnail/gameplay/bioshockinfinite.jpg', htmlFile: '', subTypes: ['어드벤처'] },
@@ -185,7 +193,7 @@ export const CARDS_BY_YEAR: Record<number, Infocard[]> = {
   2018: [
     { name: 'Borderlands: The Pre-Sequel', type: 'game', time: '14.2시간', year: 2018, month: 12, photo: 'assets/thumbnail/gameplay/borderlandpresequel.jpg', htmlFile: '', subTypes: ['액션', 'RPG'] },
     { name: 'Dark Souls III', type: 'game', time: '15시간', year: 2018, month: 12, photo: 'assets/thumbnail/gameplay/darksouls3.jpg', htmlFile: '', subTypes: ['액션', 'RPG'] },
-    { name: '냥코대전쟁', type: 'game', time: '1년', year: 2018, month: 3, photo: 'assets/thumbnail/gameplay/nyngcowar.jpg', htmlFile: '', subTypes: ['디펜스', '서브컬처'] }
+    { name: '냥코대전쟁', type: 'game', time: '1년', year: 2018, month: 3, photo: 'assets/thumbnail/gameplay/nayngcowar.jpg', htmlFile: '', subTypes: ['디펜스', '서브컬처'] }
   ],
 
   2017: [
@@ -219,8 +227,8 @@ export const CARDS_BY_YEAR: Record<number, Infocard[]> = {
     { name: "Assassin's Creed Brotherhood", type: 'game', time: '25.3시간', year: 2016, month: 1, photo: 'assets/thumbnail/gameplay/assassinscreedbrotherhood.jpg', htmlFile: '', subTypes: ['액션', '어드벤처'] },
     { name: 'Half-Life 2', type: 'game', time: '3시간', year: 2014, month: 8, photo: 'assets/thumbnail/gameplay/halflife2.jpg', htmlFile: '', subTypes: ['액션'] },
     { name: 'JUST CAUSE 2', type: 'game', time: '18.2시간', year: 2014, month: 7, photo: 'assets/thumbnail/gameplay/justcause2.jpg', htmlFile: '', subTypes: ['액션', '오픈월드'] },
-    { name: '스포어', type: 'game', time: '15시간', year: 2014, month: 6, photo: 'assets/thumbnail/gameplay/prototype2.jpg', htmlFile: '', subTypes: ['액션'] },
-    { name: '암네시아 다크 디센트', type: 'game', time: '2.7시간', year: 2014, month: 1, photo: 'assets/thumbnail/gameplay/bioshockinfinite.jpg', htmlFile: '', subTypes: ['공포'] },
+    { name: '스포어', type: 'game', time: '15시간', year: 2014, month: 6, photo: 'assets/thumbnail/gameplay/spore.jpg', htmlFile: '', subTypes: ['액션'] },
+    { name: '암네시아 다크 디센트', type: 'game', time: '2.7시간', year: 2014, month: 1, photo: 'assets/thumbnail/gameplay/amnesiadarkdescent.jpg', htmlFile: '', subTypes: ['공포'] },
     { name: 'Prototype 2', type: 'game', time: '15시간', year: 2014, month: 6, photo: 'assets/thumbnail/gameplay/prototype2.jpg', htmlFile: '', subTypes: ['액션'] },
     { name: 'F.E.A.R. 3', type: 'game', time: '6.2시간', year: 2014, month: 6, photo: 'assets/thumbnail/gameplay/fear3.jpg', htmlFile: '', subTypes: ['액션'] },
     { name: 'CRYSIS 2', type: 'game', time: '11.5시간', year: 2014, month: 6, photo: 'assets/thumbnail/gameplay/crysis2.jpg', htmlFile: '', subTypes: ['액션'] },
@@ -241,10 +249,10 @@ export const CARDS_BY_YEAR: Record<number, Infocard[]> = {
     { name: 'ACE OF SPADES', type: 'game', time: '8.2시간', year: 2013, month: 7, photo: 'assets/thumbnail/gameplay/aceofspades.jpg', htmlFile: '', subTypes: ['액션'] },
     { name: 'The Binding of Isaac', type: 'game', time: '19.8시간', year: 2013, month: 7, photo: 'assets/thumbnail/gameplay/thebindingofisac.jpg', htmlFile: '', subTypes: ['액션'] },
     { name: 'LEFT 4 DEAD 2', type: 'game', time: '19.6시간', year: 2013, month: 7, photo: 'assets/thumbnail/gameplay/left4dead2.jpg', htmlFile: '', subTypes: ['액션'] },
-    { name: '호러매니악 大 영웅대전', type: 'project', time: '1개월', year: 2013, month: 3, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['유즈맵'] },
-    { name: '배틀 오브 호러매니악', type: 'project', time: '1개월', year: 2013, month: 3, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['유즈맵'] },
+    { name: '호러매니악 大 영웅대전', type: 'project', time: '1개월', year: 2013, month: 3, photo: 'assets/thumbnail/development/starcraftusemaphorrormaniacheroswar.png', htmlFile: '', subTypes: ['유즈맵'] },
+    { name: '배틀 오브 호러매니악', type: 'project', time: '1개월', year: 2013, month: 3, photo: 'assets/thumbnail/development/starcraftusemapbattleofhorrormaniac.png', htmlFile: '', subTypes: ['유즈맵'] },
     { name: '다키스트 오브 데이스', type: 'game', time: '7시간', year: 2013, month: 2, photo: 'assets/thumbnail/gameplay/darkestofdays.jpg', htmlFile: '', subTypes: ['액션'] },
-    { name: '마지막의 길', type: 'project', time: '1개월', year: 2013, month: 3, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['쯔꾸르'] },
+    { name: '마지막의 길', type: 'project', time: '1개월', year: 2013, month: 3, photo: 'assets/thumbnail/development/roadonend.png', htmlFile: '', subTypes: ['쯔꾸르'] },
     { name: 'SD건담 캡슐파이터', type: 'game', time: '50시간', year: 2013, month: 2, photo: 'assets/thumbnail/gameplay/sdgundamcapsulefighter.jpg', htmlFile: '', subTypes: ['액션'] }
   ],
 
@@ -254,7 +262,7 @@ export const CARDS_BY_YEAR: Record<number, Infocard[]> = {
   ],
 
   2010: [
-    { name: '인페스티드 테란 컨트롤', type: 'project', time: '1개월', year: 2013, month: 3, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: ['유즈맵'] },
+    { name: '인페스티드 테란 컨트롤', type: 'project', time: '1개월', year: 2013, month: 3, photo: '', htmlFile: '', subTypes: ['유즈맵'] },
     { name: '스타크래프트 II: 자유의 날개', type: 'game', time: '4.7시간', year: 2010, month: 10, photo: 'assets/thumbnail/gameplay/starcraft2freedom.jpg', htmlFile: '', subTypes: ['전략'] },
   ],
 
@@ -264,8 +272,8 @@ export const CARDS_BY_YEAR: Record<number, Infocard[]> = {
   ],
 
   2006: [
-    { name: '필통 축구', type: 'project', time: '1주일', year: 2013, month: 3, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: [] },
-    { name: '공책 게임', type: 'project', time: '1주일', year: 2013, month: 3, photo: 'assets/thumbnail/gameplay/dyinglight2.jpg', htmlFile: '', subTypes: [] },
+    { name: '필통 축구', type: 'project', time: '1주일', year: 2013, month: 3, photo: '', htmlFile: '', subTypes: [] },
+    { name: '공책 게임', type: 'project', time: '1주일', year: 2013, month: 3, photo: '', htmlFile: '', subTypes: [] },
     { name: '노바 1492', type: 'game', time: '70시간', year: 2006, month: 7, photo: 'assets/thumbnail/gameplay/nova1492.jpg', htmlFile: '', subTypes: ['전략'] },
     { name: '메이플스토리', type: 'game', time: '4.7시간', year: 2006, month: 10, photo: 'assets/thumbnail/gameplay/maplestory.jpg', htmlFile: '', subTypes: ['RPG'] },
     { name: '던전 앤 파이터', type: 'game', time: '4.7시간', year: 2006, month: 10, photo: 'assets/thumbnail/gameplay/dungeonandfighter.png', htmlFile: '', subTypes: ['RPG', '액션'] }
