@@ -1,57 +1,3 @@
-<style>
-.project-detail {
-  line-height: 1.6;
-  color: #222;
-}
-
-.project-title {
-  margin-bottom: 6px;
-}
-
-.project-summary {
-  color: #666;
-  margin-bottom: 16px;
-}
-
-section {
-  margin-top: 24px;
-}
-
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.skill-tags span {
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: rgba(30, 136, 229, 0.12);
-  color: #1e88e5;
-}
-
-.feature-list {
-  list-style: none;
-  padding: 0;
-}
-
-.feature-list li {
-  margin-bottom: 10px;
-}
-
-.trouble {
-  padding: 10px 12px;
-  margin-top: 10px;
-  border-left: 3px solid #1e88e5;
-  background: rgba(30, 136, 229, 0.05);
-}
-
-.trouble h4 {
-  margin: 0 0 6px;
-}
-</style>
-
 <div class="project-detail">
 
   <h2 class="project-title">
@@ -62,20 +8,42 @@ section {
     5인 개발 (기획 1 / 개발 4)
   </p>
 
+  <section class="screenshots-section">
+  <h3>📸 개발 결과</h3>
+
+  <div class="screenshots-grid grid-2x2">
+    <figure>
+      <img src="assets/htmls/infest/infest_main.png" alt="메인 화면">
+      <figcaption>메인 화면</figcaption>
+    </figure>
+
+    <figure>
+      <img src="assets/htmls/infest/infest_play.png" alt="플레이 화면">
+      <figcaption>플레이</figcaption>
+    </figure>
+
+    <figure>
+      <img src="assets/htmls/infest/infest_grow.png" alt="도전 목표">
+      <figcaption>성장</figcaption>
+    </figure>
+
+    <figure>
+      <img src="assets/htmls/infest/infest_end.png" alt="엔딩 화면">
+      <figcaption>엔딩</figcaption>
+    </figure>
+  </div>
+</section>
+
   <!-- Skills -->
   <section>
     <h3>🛠 사용 기술</h3>
     <div class="skill-tags">
       <span>Unity</span>
-      <span>URP</span>
       <span>Photon Fusion2</span>
       <span>NavMesh</span>
       <span>Input System</span>
       <span>Analytics</span>
-      <span>Git</span>
-      <span>JSON</span>
       <span>Ragdoll</span>
-      <span>Raycast</span>
     </div>
   </section>
 
@@ -85,27 +53,15 @@ section {
 
     <ul class="feature-list">
       <li>
-        <strong>몬스터</strong>
-        <p>프레임워크 설계 및 전반적인 몬스터 기능 구현</p>
+        1. 몬스터 (프레임워크, 기능)
       </li>
 
       <li>
-        <strong>플레이어</strong>
-        <p>프레임워크 설계 및 전반적인 플레이어 기능 구현</p>
+        2. 플레이어 (프레임워크, 기능)
       </li>
 
       <li>
-        <strong>Editor</strong>
-        <p>개발자와 기획자를 위한 편의성 툴 구현</p>
-      </li>
-
-      <li>
-        <strong>Unity Analytics</strong>
-      </li>
-
-      <li>
-        <strong>네트워크 (Photon Fusion2)</strong>
-        <p>매칭부터 게임 플레이까지 전반적인 네트워크 환경 구축</p>
+        3. 네트워크 (매칭, 플레이)
       </li>
     </ul>
   </section>
@@ -115,27 +71,11 @@ section {
     <h3>🧠 트러블 슈팅</h3>
 
     <div class="trouble">
-      <h4>몬스터 이동속도가 씬마다 달라지는 현상</h4>
-      <p><strong>원인</strong> : NavMeshAgent.SetDestination() 기반 Time.deltaTime 오작동</p>
-      <p><strong>해결</strong> : NavMeshAgent.SetMove() + Runner.DeltaTime 사용</p>
+      NavMesh와 NetworkTransform이 서로 네트워크 객체의 transform을 제어하려다 충돌해 몬스터 스폰 위치에 큰 오차 발생 → 스폰되는 순간에 NetworkTransform을 비활성화 상태로 두어 충돌 해결
     </div>
 
     <div class="trouble">
-      <h4>플레이어 조작감 저하 (유저 피드백)</h4>
-      <p><strong>원인</strong> : 네트워크 동기화 간격으로 인한 움직임 끊김</p>
-      <p><strong>해결</strong> : Fusion2 KCC 적용 (보간 + 예측)</p>
-    </div>
-
-    <div class="trouble">
-      <h4>WebGL 빌드 플레이 불가</h4>
-      <p><strong>원인</strong> : Web 구조상 S2P 네트워크 불가 + 용량 제한</p>
-      <p><strong>해결</strong> : 싱글 전용 소규모 맵 제작, MVP 맵 재활용</p>
-    </div>
-
-    <div class="trouble">
-      <h4>몬스터 스테이터스 struct vs class</h4>
-      <p><strong>판단 근거</strong> : MS 가이드 — 16byte 이하 instance는 struct 권장</p>
-      <p><strong>결론</strong> : struct 채택</p>
+      Time.deltaTime 기반 물리 연산이 네트워크 물리 연산의 특수성과 맞지 않아 호스트 간 이동 속도 오차 발생 → Runner.DeltaTime 기반으로 전환하여 네트워크 물리 연산에 대응해 이동 속도 오차 해결
     </div>
   </section>
 
