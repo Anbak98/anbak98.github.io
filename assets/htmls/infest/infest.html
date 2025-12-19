@@ -4,7 +4,7 @@
     프로젝트 요약
   </h2>
 
-  <h3>📸 구성</h3>
+  <h3>구성</h3>
   <p class="project-summary">
     <p>
       1인칭 3D 생존 / 슈팅 / 멀티 좀비 FPS
@@ -42,7 +42,7 @@
 
   <!-- Skills -->
   <section>
-    <h3>🛠 사용 기술</h3>
+    <h3>🛠 기술 스택</h3>
     <div class="skill-tags">
       <span>Unity</span>
       <span>Photon Fusion2</span>
@@ -52,19 +52,23 @@
 
   <!-- Core Features -->
   <section>
-    <h3>⚙ 핵심 구현</h3>
+    <h3>⚙ 서비스: 시원하게 총을 쏘며 스트레스를 풀 수 있는 게임</h3>
 
-    <ul class="feature-list">
+    <ul>
       <li>
-        1. 몬스터 (프레임워크, 기능)
+        게임 매니저, 몬스터, 플레이어를 비롯한 전체적인 프레임워크 구축
+      </li> 
+      <li>
+        Photon Fusion2 기반 매칭과 게임 플레이 네트워크 구축
       </li>
-
       <li>
-        2. 플레이어 (프레임워크, 기능)
-      </li>
-
+        FSM과 CRTP를 적용해 보스 몬스터를 포함한 다수의 몬스터 빠른 구현
+      </li>    
       <li>
-        3. 네트워크 (매칭, 플레이)
+        NetworkBool 트리거 기반 애니메이션 동기화 
+      </li>    
+      <li>
+        R&D 후 내용을 팀원들에게 공유, 개발 일정 관리와 포스트모텀 작성으로 생산성 향상
       </li>
     </ul>
   </section>
@@ -74,11 +78,17 @@
     <h3>🧠 트러블 슈팅</h3>
 
     <div class="trouble">
+      <h4>
+
       NavMesh와 NetworkTransform이 서로 네트워크 객체의 transform을 제어하려다 충돌해 몬스터 스폰 위치에 큰 오차 발생 → 스폰되는 순간에 NetworkTransform을 비활성화 상태로 두어 충돌 해결
-    </div>
+    
+
+      </h4></div>
 
     <div class="trouble">
-      Time.deltaTime 기반 물리 연산이 네트워크 물리 연산의 특수성과 맞지 않아 호스트 간 이동 속도 오차 발생 → Runner.DeltaTime 기반으로 전환하여 네트워크 물리 연산에 대응해 이동 속도 오차 해결
+      <h4>
+      Time.deltaTime 기반 물리 연산이 네트워크 틱 기반 물리 연산과 맞지 않아 호스트에 따라 캐릭터들의 이동 속도 오차 발생 → Runner.DeltaTime 기반으로 전환하여 네트워크 물리 연산에 대응해 이동 속도 오차 해결
+    </h4>
     </div>
   </section>
 
