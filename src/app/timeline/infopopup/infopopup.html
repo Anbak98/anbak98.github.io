@@ -50,15 +50,25 @@
     <div class="icon-container">
       @for (icon of item?.icons; track icon.type) {
         @if (icon.url) {
-          <a
-            class="icon"
-            [ngClass]="icon.type"
-            [attr.data-tooltip]="icon.tooltip"
-            [href]="icon.url"
-            target="_blank"
-            rel="noopener"
-            (click)="$event.stopPropagation()"
-          ></a>
+          <div class="icon-wrapper" (click)="$event.stopPropagation()">
+  <a
+    class="icon"
+    [ngClass]="icon.type"
+    [attr.data-tooltip]="icon.tooltip"
+    [href]="icon.url"
+    target="_blank"
+    rel="noopener"
+  ></a>
+
+  <a
+    class="icon-click"
+    [href]="icon.url"
+    target="_blank"
+    rel="noopener"
+  >
+    Click
+  </a>
+</div>
         }
         @else {
           <div
@@ -70,6 +80,13 @@
       }
     </div>
   }
+  
+
+    @if (item?.comment) {
+      <div class="comment-quote">
+        ‘{{ item?.comment }}’
+      </div>
+    }
       </div>
     </div>
 

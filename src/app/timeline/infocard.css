@@ -147,6 +147,10 @@
   background-image: url('/assets/icons/steam.svg');
 }
 
+.icon.youtube {
+  background-image: url('/assets/icons/youtube.svg');
+}
+
 /* 도전과제 100% */
 .icon.achievement-100 {
   background-image: url('/assets/icons/trophy.svg');

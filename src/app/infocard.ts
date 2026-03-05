@@ -3,7 +3,8 @@ export type CardLinkIconType =
   | 'blog'
   | 'achievement-100'
   | 'github'
-  | 'steam';
+  | 'steam'
+  | 'youtube';
 
 export interface CardLinkIcon {
   type: CardLinkIconType;
@@ -19,6 +20,7 @@ export interface Infocard {
   year: number;
   month: number;
   photo: string;
+  comment?: string;
   htmlFile: string;
   subTypes: string[];   // 🔥 여러 서브타입 가능
   tags?: string[];

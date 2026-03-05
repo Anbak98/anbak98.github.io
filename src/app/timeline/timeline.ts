@@ -20,7 +20,7 @@ export class Timeline implements AfterViewInit {
   activeYear: number | null = null;
 
   /** 메인 필터 */
-  activeFilters = new Set<'project' | 'game'>(['project', 'game']);
+  activeFilters = new Set<'project' | 'game'>(['game']);
 
   /** 서브필터 */
   subFilters = new Set<string>();
@@ -34,10 +34,14 @@ export class Timeline implements AfterViewInit {
   showPopup: boolean = false;
   public activeCardHtml: string | null = null;
 
+
+  ngOnInit() {
+    this.initializeVisibility();
+    this.rebuildSubFilters(); // ⭐ 여기로 이동
+  }
+
   ngAfterViewInit() {
     this.updateActiveYear();
-    this.initializeVisibility();
-    this.rebuildSubFilters();
   }
 
   initializeVisibility() {
@@ -75,20 +79,80 @@ export class Timeline implements AfterViewInit {
     if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+  isEnglish(str: string) {
+    return /^[A-Za-z]/.test(str);
+  }
+
+  isKorean(str: string) {
+    return /^[가-힣]/.test(str);
+  }
+
   rebuildSubFilters() {
-    const set = new Set<string>();
+    // subType → 어떤 타입에 속하는지 기록
+    const ownership = new Map<string, { project: boolean; game: boolean }>();
+
     for (const year in this.cardsByYear) {
       this.cardsByYear[+year].forEach(card => {
-        if (this.activeFilters.has(card.type)) {
-          card.subTypes?.forEach(tag => set.add(tag));
-        }
+        if (!this.activeFilters.has(card.type)) return;
+
+        card.subTypes?.forEach(tag => {
+          if (!ownership.has(tag)) {
+            ownership.set(tag, { project: false, game: false });
+          }
+          ownership.get(tag)![card.type] = true;
+        });
       });
     }
-    this.subFilters = set;
+
+    const sorted = Array.from(ownership.keys()).sort((a, b) => {
+      const oa = ownership.get(a)!;
+      const ob = ownership.get(b)!;
+
+      const priority = (o: { project: boolean; game: boolean }) => {
+        if (o.project && !o.game) return 0; // project 전용
+        if (o.project && o.game) return 1;  // 공통 (중립)
+        return 2;                           // game 전용
+      };
+
+      const pa = priority(oa);
+      const pb = priority(ob);
+
+      // 1️⃣ ownership 기준
+      if (pa !== pb) return pa - pb;
+
+      const aEng = this.isEnglish(a);
+      const bEng = this.isEnglish(b);
+
+      // 2️⃣ 영어 → 한글
+      if (aEng && !bEng) return -1;
+      if (!aEng && bEng) return 1;
+
+      // 3️⃣ 같은 언어권 정렬
+      return a.localeCompare(b, 'ko');
+    });
+
+    this.subFilters = new Set(sorted);
+
+    // 활성 서브필터 정리
     this.activeSubFilters.forEach(t => {
       if (!this.subFilters.has(t)) this.activeSubFilters.delete(t);
     });
   }
+hasVisibleCards(year: number): boolean {
+  // 서브필터가 하나도 없으면 연도 숨기지 않음
+  if (this.activeSubFilters.size === 0) return true;
+
+  const cards = this.cardsByYear[year] || [];
+
+  return cards.some(c => {
+    // 메인 필터
+    if (!this.activeFilters.has(c.type)) return false;
+
+    // 서브필터
+    return c.subTypes?.some(t => this.activeSubFilters.has(t));
+  });
+}
+
 
   toggleFilter(type: 'project' | 'game') {
     if (this.activeFilters.has(type)) this.activeFilters.delete(type);

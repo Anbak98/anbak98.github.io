@@ -1,7 +1,7 @@
 <!-- 메인 필터 -->
 <div class="filter-bar main-filter">
   <button (click)="toggleFilter('project')" [class.active]="activeFilters.has('project')">개발</button>
-  <button (click)="toggleFilter('game')" [class.active]="activeFilters.has('game')">게임</button>
+  <button (click)="toggleFilter('game')" [class.active]="activeFilters.has('game')">취미</button>
   <button class="sub-toggle" (click)="showSubFilters = !showSubFilters">
     {{ showSubFilters ? '⬆ 서브필터 접기' : '⬇ 서브필터 펼치기' }}
   </button>
@@ -16,8 +16,17 @@
 
 <main>
   <div class="vertical-line"></div>
+  <div class="timeline-wrapper">
+<div class="timeline-intro-overlay">
+  <div class="timeline-intro-content">
+    <h1>아카이브에 오신 걸 환영합니다!</h1>    
+  </div>
+</div>
+
+  
   <div class="timeline-container" id="timeline">
     @for (y of years; track $index) {
+    @if (hasVisibleCards(y)) {
     <div class="timeline-row" #rows (click)="scrollToYear($index)" [class.bg-even]="$index % 2 === 0"
       [class.bg-odd]="$index % 2 === 1">
 
@@ -45,8 +54,11 @@
 
     </div>
     }
+    }
 
   </div>
+</div>
+
 </main>
 
 <!-- 팝업 컴포넌트 -->
@@ -60,18 +72,10 @@
       'development-card': item.type !== 'game'
     }" [class.show]="item._visible" (mousemove)="onCardMouseMove($event, card)" (mouseleave)="onCardMouseLeave(card)"
     (click)="openCardPopup(item); $event.stopPropagation()">
-    <img [src]="item.photo" />
+    <img [src]="item.photo && item.photo !== '' ? item.photo : 'assets/noimage.png'" />
 
     <div class="name" autoShrink>{{ item.name }}</div>
     <div class="name" autoShrink>{{ item.time }}</div>
-
-    @if (item.tags?.length) {
-    <div class="tag-wrapper">
-      @for (tag of item.tags; track tag) {
-      <div class="tag">{{ tag }}</div>
-      }
-    </div>
-    }
 
     @if (item.icons?.length) {
     <div class="icon-container">
@@ -88,6 +92,15 @@
       }
     </div>
     }
+
+    @if (item.tags?.length) {
+    <div class="tag-wrapper">
+      @for (tag of item.tags; track tag) {
+      <div class="tag">{{ tag }}</div>
+      }
+    </div>
+    }
+
   </div>
 </ng-template>
 <ng-template #cardGroup let-year>

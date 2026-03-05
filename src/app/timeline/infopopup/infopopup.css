@@ -21,15 +21,15 @@
 }
 
 /* =================================================
-   Popup Content
+   Popup Container
 ================================================= */
 .popup-content {
   position: relative;
   z-index: 1010;
 
-  width: auto;
-  min-width: 300px;
-  max-width: 90%;
+  
+ 
+  width: min(720px, 92vw);
   max-height: 90vh;
 
   padding: 20px;
@@ -53,7 +53,7 @@
   right: 12px;
 
   cursor: pointer;
-  background: transparent;
+  background: none;
   border: none;
 
   font-size: 1.2rem;
@@ -66,6 +66,7 @@
 .popup-header {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap; /* ⭐ 핵심 */
   gap: 16px;
   padding-top: 20px;
   margin-bottom: 20px;
@@ -88,14 +89,13 @@
   text-align: left;
 }
 
-/* Title */
 .header-info .title {
   margin: 0;
   font-size: 1.4rem;
   font-weight: 700;
 }
 
-/* Meta (year / time) */
+/* Meta */
 .meta {
   display: flex;
   align-items: center;
@@ -106,7 +106,7 @@
 }
 
 /* =================================================
-   Chips (Genres / Tags)
+   Chips
 ================================================= */
 .chip-group {
   display: flex;
@@ -122,20 +122,38 @@
   white-space: nowrap;
 }
 
-/* Genre chip */
 .chip.genre {
   background: rgba(30, 136, 229, 0.12);
   color: #1e88e5;
 }
 
-/* Tag chip */
 .chip.tag {
   background: rgba(0, 0, 0, 0.06);
   color: #333;
 }
 
 /* =================================================
-   Notion HTML Content
+   Comment Quote
+================================================= */
+.comment-quote {
+  margin: 10px auto 0;
+  max-width: 320px;
+
+  padding-left: 10px;
+  border-left: 3px solid rgba(0, 0, 0, 0.25);
+
+  font-size: 13.5px;
+  line-height: 1.5;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.85);
+
+  word-break: keep-all;
+  white-space: normal;
+  opacity: 0.95;
+}
+
+/* =================================================
+   Notion Content
 ================================================= */
 .popup-content .notion-content {
   margin-top: 20px;
@@ -157,108 +175,113 @@
   border-radius: 8px;
 }
 
-.popup-content .notion-content
-h1,
-h2,
-h3,
-p,
-ul,
-ol {
+.popup-content .notion-content h1,
+.popup-content .notion-content h2,
+.popup-content .notion-content h3,
+.popup-content .notion-content p,
+.popup-content .notion-content ul,
+.popup-content .notion-content ol {
   margin: 8px 0;
-  padding: 0;
 }
 
-.popup-content .notion-content [style*="width"] {
+.popup-content .notion-content [style*="width"],
+.popup-content .notion-content [style*="margin-left"] {
   width: auto !important;
   max-width: 100% !important;
-}
-
-.popup-content .notion-content [style*="margin-left"] {
   margin-left: 0 !important;
 }
 
-.popup-content .icon-container {
+/* =================================================
+   Icon Links
+================================================= */
+.icon-container {
   display: flex;
   gap: 8px;
   margin-top: 8px;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.popup-content .icon {
+.icon {
+  position: relative;
   width: 60px;
   height: 60px;
+
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0.8;
+
   cursor: pointer;
+  opacity: 0.8;
 }
 
-.popup-content .icon:hover {
+.icon:hover {
   opacity: 1;
 }
 
-.popup-content .icon {
-  position: relative;
-}
-
-.popup-content .icon::after {
+/* Tooltip */
+.icon::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: 120%;
   left: 50%;
   transform: translateX(-50%);
+
   background: #222;
   color: #fff;
   padding: 4px 8px;
   font-size: 12px;
   border-radius: 4px;
-  white-space: nowrap;
 
+  white-space: nowrap;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.15s ease;
 }
+.icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
 
-.popup-content .icon:hover::after {
+.icon-label {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 0.3px;
+}
+.icon:hover::after {
   opacity: 1;
 }
 
-.popup-content .icon.notion {
-  background-image: url('/assets/icons/notion.svg');
+/* Icon Types */
+.icon.notion { background-image: url('/assets/icons/notion.svg'); }
+.icon.blog   { background-image: url('/assets/icons/blog.svg'); }
+.icon.github { background-image: url('/assets/icons/github.svg'); }
+.icon.steam  { background-image: url('/assets/icons/steam.svg'); }
+
+.icon.youtube {
+  background-image: url('/assets/icons/youtube.svg');
 }
 
-.popup-content .icon.blog {
-  background-image: url('/assets/icons/blog.svg');
-}
-
-.popup-content .icon.github {
-  background-image: url('/assets/icons/github.svg');
-}
-
-.popup-content .icon.steam {
-  background-image: url('/assets/icons/steam.svg');
-}
-
-/* 도전과제 100% */
-.popup-content .icon.achievement-100 {
+.icon.achievement-100 {
   background-image: url('/assets/icons/trophy.svg');
 }
 
-.popup-content .icon.achievement-100.inactive {
+.icon.achievement-100.inactive {
   opacity: 0.3;
   filter: grayscale(1);
 }
 
-.popup-content .icon.achievement-100.active {
-  opacity: 1;
-}
 /* =================================================
    Responsive
 ================================================= */
-@media (max-width: 480px), (max-height: 600px) {
+
+/* 📱 Mobile */
+@media (max-width: 480px) {
   .popup-content {
-    max-height: calc(100vh - 60px);
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 40px);
+    padding: 16px;
   }
 
   .popup-header {
@@ -269,12 +292,29 @@ ol {
 
   .header-image {
     width: 100%;
-    height: auto;
     max-height: 240px;
+    height: auto;
   }
 
   .header-info {
     align-items: center;
     text-align: center;
+  }
+
+  .comment-quote {
+    max-width: 100%;
+    font-size: 13px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* 💻 Low Height (노트북, 작은 화면) */
+@media (max-height: 600px) {
+  .popup-content {
+    max-height: calc(100vh - 40px);
   }
 }
